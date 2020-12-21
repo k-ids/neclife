@@ -1,0 +1,145 @@
+.fa-dashboard::before, .fa-tachometer::before {
+  content: "\f0e4";
+  padding: 0 0 0 0;
+}
+table.dataTable thead .sorting, table.dataTable thead .sorting_asc, table.dataTable thead .sorting_desc, table.dataTable thead .sorting_asc_disabled, table.dataTable thead .sorting_desc_disabled {
+
+  cursor: pointer;
+  position: relative;
+  overflow: hidden !important;
+
+}
+input[type="text"]:focus {
+  outline: none;
+}
+/**.fa.fa-fw.fa-dashboard {
+    padding: 0 27px 0 0 !important;
+    }**/
+
+    .even .btn.btn-danger {
+     padding: 7px 10px;
+     width: 110px;
+   }
+   .odd .btn.btn-danger {
+     padding: 7px 10px;
+     width: 110px;
+   }
+   .odd .btn.btn-info {
+    padding: 7px 10px;
+    width: 110px;
+  }
+  .even .btn.btn-info {
+    padding: 7px 10px;
+    width: 110px;
+  }
+  .btn.btn-info
+  .sidebar-nav.navbar-nav .fa.fa-fw.fa-dashboard {
+    padding: 0 30px 0 0;
+  }
+  .sidebar-nav.navbar-nav .fa {
+
+    width: 35px;
+    height: 35px;
+    background-color:;
+    border-radius: 100%;
+    line-height: 33px;
+    text-align: center;
+    vertical-align: middle;
+    display: inline-block;
+    margin: 0 10px 0 0;
+    font-size: 18px;
+
+  }
+
+  #table-packing-list-row .form-control {
+    width: 10pc !important;
+  }
+  
+  #table-gsk-packing-list-row .form-control {
+    width: 10pc !important;
+  }
+
+
+  /* layout.css Style */
+  .upload-drop-zone {
+    height: 50px;
+    border-width: 2px;
+    margin-bottom: 20px;
+  }
+
+  /* skin.css Style*/
+  .upload-drop-zone {
+    color: #ccc;
+    border-style: dashed;
+    border-color: #ccc;
+    line-height: 50px;
+    text-align: center
+  }
+  .upload-drop-zone.drop {
+    color: #222;
+    border-color: #222;
+  }
+
+
+  #load {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 9999;
+    background: url(../../resources/loader.gif) 50% 50% no-repeat rgb(249,249,249);
+
+  }
+  label { font-weight: 700 !important; }
+  .menu-class { color: #fff !important; }
+  .menu-bg-class { background: black !important; }
+  a.sub-menu-class { color: #fff !important; background: #8bc34a !important; font-weight: 600 !important;}
+
+  input[type='checkbox'] {
+    -webkit-appearance:none;
+    width:30px;
+    height:30px;
+    background:white;
+    border-radius:5px;
+    border:2px solid #555;
+  }
+  input[type='checkbox']:checked {
+    background: #abd;
+  }
+
+  .navbar-brand {
+
+    padding: 0 0 0 3px;
+
+  }
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Create two equal columns that floats next to each other */
+  .column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+  }
+  .swal2-cancel.btn.btn-danger {
+    margin: 0 12px 0 0;
+  }
+
+  .sidebar-nav.navbar-nav #logistics a {
+    font-size: 15px;
+  }
+
+
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+    }
+  }
