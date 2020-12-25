@@ -3,10 +3,10 @@
    <div class="card-block">
       <style type="text/css">
          @page {
-           margin-left:5px!important;
-            margin-right:5px!important;
-            margin-top:5px!important;
-            margin-bottom:5px!important;
+            margin-left: <?= $invoice_data['margin_left']?>px !important;
+            margin-right: <?= $invoice_data['margin_right']?>px !important;
+            margin-top:  <?= $invoice_data['margin_top']?>px !important;
+            margin-bottom: <?= $invoice_data['margin_bottom']?>px !important;
          } 
          table{
          font-family:Arial, Helvetica, sans-serif;
@@ -222,7 +222,6 @@
             if(!empty($gsk_packing_map1)) { 
             $count = count($gsk_packing_map1);
             foreach($gsk_packing_map1 as $outerKey => $value) {
-            
          ?>
          <tr>
             <td style="border-bottom:0; border-top:0 " align="center" valign="top">
@@ -349,6 +348,17 @@
             </td>
          </tr>
          <?php } } ?>
+         <?php for($i = 0; $i < $invoice_data['gsk_packing_blank_counter']; $i++ ) { ?>
+           <tr style="line-height: 60px;">
+              <td style="border-top:0; border-bottom:0;"></td>
+              <td style="border-top:0; border-bottom:0;"></td>
+              <td style="border-top:0; border-bottom:0;"></td>
+              <td style="border-top:0; border-bottom:0;"></td>
+              <td style="border-top:0; border-bottom:0;"></td>
+              <td style="border-top:0; border-bottom:0;"></td>
+              <td style="border-top:0; border-bottom:0;"></td>
+           </tr>
+         <?php } ?>
          <tr>
             <td style="border-top:0;"></td>
             <td style="border-top:0;"></td>

@@ -318,6 +318,45 @@
       </div>
    </div>
    <div class="card mb-3">
+     <div class="card-header" style="background: aquamarine;">
+        <i class="fa fa-table" style="color: green;"></i> <b>Invoice Format Adjustment</b>
+     </div>
+     <div class="card-block">
+
+      <div class="row">
+           <div class="form-group col-md-6">
+             <label>Manage Custom Invoice Height:
+             <input type="number" name="custom_blank_counter" min="0" step="1" value="<?= $invoice_data['custom_blank_counter'] ?>" class="form-control">
+           </div>
+           <div class="form-group col-md-6">
+             <label>Manage Customer Invoice Height: 
+             </label>
+             <input type="number" name="customer_blank_counter" min="0" step="1" value="<?= $invoice_data['customer_blank_counter'] ?>" class="form-control">
+           </div>
+        </div>
+
+        <div class="row">
+           <div class="form-group col-md-3">
+             <label>Margin Top:</label>
+             <input type="number" name="margin_top" min="5" step="1" value="<?= $invoice_data['margin_top'] ?>" class="form-control">
+           </div>
+           <div class="form-group col-md-3">
+             <label>Margin Bottom:</label>
+             <input type="number" name="margin_bottom" min="5" step="1" value="<?= $invoice_data['margin_bottom'] ?>" class="form-control">
+           </div>
+           <div class="form-group col-md-3">
+             <label>Margin Left:</label>
+             <input type="number" name="margin_left" min="5" step="1" value="<?= $invoice_data['margin_left'] ?>" class="form-control">
+           </div>
+           <div class="form-group col-md-3">
+             <label>Margin Right:</label>
+             <input type="number" name="margin_right" min="5" step="1" value="<?= $invoice_data['margin_right'] ?>" class="form-control">
+           </div>
+        </div>
+
+     </div>
+  </div>
+   <div class="card mb-3">
       <div class="card-block">
          <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>&nbsp;Save Data And Generate Invoice</button>
          <a href="<?= base_url().$this->router->fetch_class().'/packing_list_invoice'?>" class="btn btn-warning"><i class="fa fa-ban"></i>&nbsp;Cancel</a>

@@ -2,10 +2,10 @@
 
 <style type="text/css">
  @page {
-      margin-left:5px!important;
-       margin-right:5px!important;
-       margin-top:5px!important;
-       margin-bottom:5px!important;
+       margin-left: <?= $invoice_data['margin_left']?>px !important;
+       margin-right: <?= $invoice_data['margin_right']?>px !important;
+       margin-top:  <?= $invoice_data['margin_top']?>px !important;
+       margin-bottom: <?= $invoice_data['margin_bottom']?>px !important;
      }        
      table{
     font-family:Arial, Helvetica, sans-serif;
@@ -357,18 +357,20 @@
               $line_height = '';
         ?>
 
-        <tr colspan>
-            <td class="adjust_height" style="border-top:0; <?= $line_height ?>;"> <span style="visibility:hidden">Full Height</span></td>
-            <td style="border-top:0;"></td>
-            <td style="border-top:0;"></td>
-            <td style="border-top:0;"></td>
-            <td style="border-top:0;"></td>
-            <td style="border-top:0;"></td>
-            <td style="border-top:0;"></td>
-            <?php if($invoice_datype == '1' && !empty($show_seal_no)) { ?>
-               <td style="border-top:0;"></td>
-            <?php } ?>
-         </tr>
+         <?php for($i = 0; $i < $invoice_data['custom_blank_counter']; $i++ ) { ?>
+           <tr style="line-height: 60px;">
+              <td style="border-top:0; border-bottom:0;"></td>
+              <td style="border-top:0; border-bottom:0;"></td>
+              <td style="border-top:0; border-bottom:0;"></td>
+              <td style="border-top:0; border-bottom:0;"></td>
+              <td style="border-top:0; border-bottom:0;"></td>
+              <td style="border-top:0; border-bottom:0;"></td>
+              <td style="border-top:0; border-bottom:0;"></td>
+              <?php if($invoice_datype == '1' && !empty($show_seal_no)) { ?>
+                 <td style="border-top:0; border-bottom:0;"></td>
+              <?php } ?>
+           </tr>
+         <?php } ?>
         <tr>
            <td style="border-top:0;"></td>
            <td style="border-top:0;"></td>

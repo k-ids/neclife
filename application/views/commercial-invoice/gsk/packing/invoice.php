@@ -313,14 +313,14 @@
                   </p>
                <?php } } ?>
             </td>
-            <td style="border-bottom:0" align="center" valign="top">
+            <td  align="center" valign="top">
                <p>
                   <b>
                      <?= $value['pallet_no'] ?>
                    </b>
                 </p>
             </td>
-            <td style="border-bottom:0" align="center" valign="top">
+            <td  align="center" valign="top">
                <p>
                   <b>
                       <?php 
@@ -333,7 +333,7 @@
                    </b> 
                </p>
             </td>
-            <td align="center" valign="top">
+            <td style="border-bottom:0" align="center" valign="top">
                <blockquote>
                   <p>
                      <b> 
@@ -359,6 +359,17 @@
             </td>
          </tr>
          <?php } } ?>
+         <?php for($i = 0; $i < $invoice_data['blank_counter']; $i++ ) { ?>
+         <tr style="line-height: 60px;">
+            <td style="border-top:0; border-bottom:0;"></td>
+            <td style="border-top:0; border-bottom:0;"></td>
+            <td style="border-top:0; border-bottom:0;"></td>
+            <td style="border-top:0; border-bottom:0;"></td>
+            <td style="border-top:0; border-bottom:0;"></td>
+            <td style="border-top:0; border-bottom:0;"></td>
+            <td style="border-top:0; border-bottom:0;"></td>
+         </tr>
+         <?php } ?>
          <tr>
             <td style="border-top:0;"></td>
             <td style="border-top:0;"></td>

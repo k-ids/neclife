@@ -363,19 +363,7 @@
         </tr>
         <?php }?>
 
-        <tr colspan>
-            <td class="adjust_height" style="border-top:0;line-height:426px;"> <span style="visibility:hidden">Full Height</span></td>
-            <td style="border-top:0;"></td>
-            <td style="border-top:0;"></td>
-            <td style="border-top:0;"></td>
-            <td style="border-top:0;"></td>
-            <td style="border-top:0;"></td>
-            <td style="border-top:0;"></td>
-            <?php if($invoice_datype == '1' && !empty($show_seal_no)) { ?>
-               <td style="border-top:0;"></td>
-            <?php } ?>
-         </tr>
-
+  
         <tr>
            <td style="border-top:0;"></td>
            <td style="border-top:0;"></td>

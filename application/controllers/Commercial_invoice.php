@@ -549,7 +549,14 @@
                'declaretion_final' => $post['declaration_final'],
                'currency_name' => strip_tags($post['currency_name']),
                'created_by' => $this->session->userdata('admin_id'),
-               'created_at' => date('Y-m-d')
+               'created_at' => date('Y-m-d'),
+               'custom_blank_counter' => strip_tags($post['custom_blank_counter']),
+               'customer_blank_counter' => strip_tags($post['customer_blank_counter']),
+               'margin_top' => strip_tags($post['margin_top']),
+               'margin_bottom' => strip_tags($post['margin_bottom']),
+               'margin_left' => strip_tags($post['margin_left']),
+               'margin_right' => strip_tags($post['margin_right']),
+
            );
 
                //echo "<pre>";print_r($table_array);die;
@@ -875,7 +882,7 @@
                   return redirect(base_url().$this->router->fetch_class());
               }
               $mpdf->WriteHTML($html);
-              $mpdf->Output($filename, 'D'); 
+              $mpdf->Output($filename, 'I'); 
         }
 
         /**
@@ -1342,6 +1349,12 @@
                'declaretion_final' => $post['declaration_final'],
                'created_by' => $this->session->userdata('admin_id'),
                'created_at' => date('Y-m-d'),
+               'custom_blank_counter' => strip_tags($post['custom_blank_counter']),
+               'customer_blank_counter' => strip_tags($post['customer_blank_counter']),
+               'margin_top' => strip_tags($post['margin_top']),
+               'margin_bottom' => strip_tags($post['margin_bottom']),
+               'margin_left' => strip_tags($post['margin_left']),
+               'margin_right' => strip_tags($post['margin_right']),
            );
 
                    //echo "<pre>";print_r($table_array);'<br>';
@@ -1468,6 +1481,17 @@
 
               $invoice_packing_list  = $this->invoiceipackinglist->findAll(array('invoice_no' => $invoice_data['invoice_id']));
 
+              if(!empty($invoice_packing_list)) {
+                  $first_three_columns = array();
+                  foreach ($invoice_packing_list as $key => $value) {
+                       $first_three_columns['marks_drum_nos'][] = $value['drum_nos'];
+                       $first_three_columns['packing_type']  = $value['packing_type'];
+                       $first_three_columns['product']  = $value['product'];
+                  }
+              }
+              $data['first_three_columns'] = $first_three_columns;
+             
+
               $da_type = $this->da_header->findOne(array('id' => $invoice_data['da_no']));
               $data['invoice_datype'] = $da_type['da_type'];
                
@@ -1534,7 +1558,7 @@
                          $combined_array[trim($res['exp'].'/'.$res['mfg'])][] = $res['batch'];
                   }
                 }
-              // echo "<pre>"; print_r($invoice_packing_list);die;
+               // echo "<pre>"; print_r($invoice_packing_list);die;
                $data['combined_data'] = $combined_array;
 
               if(!empty($type)) {
@@ -1660,7 +1684,7 @@
                     }
                     //echo "<pre>"; print_r($html)
                     $mpdf->WriteHTML($html);
-                    $mpdf->Output($filename, 'D'); 
+                    $mpdf->Output($filename, 'I'); 
          }
 
 
@@ -2044,6 +2068,12 @@
                          'currency_name' => strip_tags($post['currency_name']),
                          'created_by' => $this->session->userdata('admin_id'),
                          'created_at' => date('Y-m-d'),
+                         'blank_counter' => strip_tags($post['blank_counter']),
+                         'gsk_packing_blank_counter' => strip_tags($post['gsk_packing_blank_counter']),
+                         'margin_top' => strip_tags($post['margin_top']),
+                         'margin_bottom' => strip_tags($post['margin_bottom']),
+                         'margin_left' => strip_tags($post['margin_left']),
+                         'margin_right' => strip_tags($post['margin_right']),
 
                      );
                      //echo "<pre>"; print_r($table_array);die;
@@ -2216,7 +2246,7 @@
              $filename = 'GSK-Invoice-'.$export_gsk_header['da_no_name'].'.pdf';
              $html = $this->load->view('commercial-invoice/gsk/invoice-pdf', $data , true);
              $mpdf->WriteHTML($html);
-             $mpdf->Output($filename, 'D'); 
+             $mpdf->Output($filename, 'I'); 
  
          }
 
@@ -2332,7 +2362,7 @@
              $filename = 'GSK-Packing-List-'.$export_gsk_header['da_no_name'].'.pdf';
              $html = $this->load->view('commercial-invoice/gsk/packing/invoice-pdf', $data , true);
              $mpdf->WriteHTML($html);
-             $mpdf->Output($filename, 'D'); 
+             $mpdf->Output($filename, 'I'); 
  
          }
 
@@ -2347,7 +2377,7 @@
  
          }
 
-          public function pdf_gsk_test(){
+        public function pdf_gsk_test(){
           
 
             $data['pageTitle'] = 'Neclife - GSK Invoice | Create';

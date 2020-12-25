@@ -286,33 +286,18 @@
             </td>
          </tr>
          <?php } } ?>
-		 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-		 <!-- full page height of a4 is 1403px  
-		 426px
-		 -->
-		 <script type="text/javascript">
-			/*
-			jQuery(function($) {
-				var pdf_required_height = 1193;
-				var doc_total_height = $('.card:visible').height(); // 1193 will give you calculated height
-				if(doc_total_height < '1193'){
-					var add_height = pdf_required_height - doc_total_height+'px';
-					$(".adjust_height").css("line-height", add_height); 
-				}
-				//alert(doc_total_height);
-			});
-			*/
-		 </script>
 		 
-		 <tr>
-            <td class="adjust_height" style="border-top:0;line-height:0px;"> <span style="visibility:hidden">Full Height</span></td>
-            <td style="border-top:0;"></td>
-            <td style="border-top:0;"></td>
-            <td style="border-top:0;"></td>
-            <td style="border-top:0;"></td>
-            <td style="border-top:0;"></td>
-         </tr>
-		 <!-- -->
+		   <?php for($i = 0; $i < $invoice_data['customer_blank_counter']; $i++ ) { ?>
+           <tr style="line-height: 60px;">
+              <td style="border-top:0; border-bottom:0;"></td>
+              <td style="border-top:0; border-bottom:0;"></td>
+              <td style="border-top:0; border-bottom:0;"></td>
+              <td style="border-top:0; border-bottom:0;"></td>
+              <td style="border-top:0; border-bottom:0;"></td>
+              <td style="border-top:0; border-bottom:0;"></td>
+           </tr>
+         <?php } ?>
+         
          <tr>
             <td style="border-top:0;"></td>
             <td style="border-top:0;"></td>
