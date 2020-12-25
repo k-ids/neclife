@@ -211,12 +211,12 @@
                                     'total_no_boxes' => $post['total_no_boxes'][$i],
                                     'total_no_packs' => $post['total_no_packs'][$i],
                                     'production_remarks' => $post['production_remarks'],
-                                    'show_seal_no' => isset($post['show_seal_noal_no']) ? $post['show_seal_noal_no'] : '',
+                                    'show_seal_no' => isset($post['show_seal_no']) ? $post['show_seal_no'] : '',
                                     'created_by' => $this->session->userdata('username')
                                 );
                             }
                         }
-                        //echo "<pre>";print_r($packing_list_table_array);die;
+                       // echo "<pre>";print_r($packing_list_table_array);die;
                         if(!empty($packing_list_table_array)){
                              $this->packing_list->deleteWhere(array('da_no' => $id , 'product' => $post['post_product'] ));
                               $insert = $this->packing_list->insertBatch($packing_list_table_array);

@@ -9,7 +9,7 @@
 <div class="card mb-3">
    <div class="card-block">
       <div style="float: right;">
-         <a href="<?= base_url().$this->router->fetch_class().'/pdf_gsk_invoice/'.$invoice_data['invoice_id']?>" class="btn btn-danger"><i class="fa fa-files-o"></i>&nbsp;Download GSK Packing-Invoice</a>
+         <a href="<?= base_url().$this->router->fetch_class().'/pdf_gsk_invoice/'.$invoice_data['invoice_id']?>" class="btn btn-danger"><i class="fa fa-files-o"></i>&nbsp;Download GSK Invoice</a>
          <a href="<?= base_url().'/commercial_invoice/update_gsk_invoice/'.$invoice_data['invoice_id']?>" class="btn btn-warning"><i class="fa fa-pencil"></i>&nbsp;Edit Invoice</a>
       </div>
       

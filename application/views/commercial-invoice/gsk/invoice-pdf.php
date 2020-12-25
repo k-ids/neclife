@@ -2,6 +2,12 @@
 <div class="card mb-3">
    <div class="card-block">
       <style type="text/css">
+          @page {
+            margin-left:5px!important;
+            margin-right:5px!important;
+            margin-top:5px!important;
+            margin-bottom:5px!important;
+         } 
          table{
          font-family:Arial, Helvetica, sans-serif;
          font-size: 9px;

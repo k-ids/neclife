@@ -1560,8 +1560,17 @@
         */
 
          public function packinglist_invoice_pdf($type = '', $id ='') {
+          
+                    $mpdf = new \Mpdf\Mpdf([
+                              'mode' => 'utf-8',
+                              'format' => 'A4-P', 
+                              'debug' => true, 
+                              'allow_output_buffering' => true,
+                              //'shrink_tables_to_fit' => true
+                            ]);
 
-                    $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P', 'debug' => true, 'allow_output_buffering' => true]);
+                    $mpdf->SetDisplayMode('fullpage'); 
+                    
                     $data = array();
                     $invoice_data =  $this->invoice_header_packing->findOne(array('invoice_id' => $id));
 
@@ -2204,8 +2213,124 @@
 
             }
              
-             $filename = 'GSK-Packing-Invoice-'.$export_gsk_header['da_no_name'].'.pdf';
+             $filename = 'GSK-Invoice-'.$export_gsk_header['da_no_name'].'.pdf';
              $html = $this->load->view('commercial-invoice/gsk/invoice-pdf', $data , true);
+             $mpdf->WriteHTML($html);
+             $mpdf->Output($filename, 'D'); 
+ 
+         }
+
+        public function download_gsk_packing_invoice($id = ''){
+             
+            if($this->session->userdata('error')) {
+                $this->session->unset_userdata('error');
+            }
+            $data = array();
+            $export_gsk_header = $this->export_gsk_header->findOne(array('invoice_id' => $id));
+            if(empty($id) && empty($export_gsk_header)) {
+
+                 $this->session->set_flashdata('error', 'Bad Request.');
+                 return redirect( base_url(). $this->router->fetch_classs(). '/gsk_packing_invoice');
+
+            } else {
+                   
+                $export_gsk_daitems = $this->export_gsk_daitems->findAll(array('da_no' => $export_gsk_header['da_no']));
+                $gsk_packing = $this->gsk_packing->findone(array('da_no' => $export_gsk_header['da_no']));
+                $gsk_packing_map = $this->gsk_packing_map->findAll(array('da_no' => $export_gsk_header['da_no']));
+
+                if(!empty($gsk_packing_map)) {
+                    
+                   $combined_array = array();
+                   foreach($gsk_packing_map as $key => $value) {
+                       $combined_array[trim($value['mfg_date'].'/'.$value['retest_date'])][] = $value['batch_no'];
+                   }
+                   
+                   $gsk_packing_map1 = array();
+                   $counter = 1;
+                   foreach ($gsk_packing_map as $key => $value) {
+
+                        for($i = 1 ; $i <= 6; $i++) {
+                               
+                                $gsk_packing_map1[] = array(
+                                    'data' => $value,
+                                    'bag_no1' => $i, 
+                                    'pallet_no'  => $counter
+                                       
+                                );
+                            }
+                        $counter++;
+                    }  
+                }
+
+                //echo "<pre>"; print_r($gsk_packing);die();
+                $data['invoice_data'] = $export_gsk_header;
+                $data['invoice_da_items'] = $export_gsk_daitems;
+                $data['gsk_packing'] = $gsk_packing;
+                $data['gsk_packing_map1'] = $gsk_packing_map1;
+                $data['gsk_packing_map'] = $gsk_packing_map;
+                $data['combined_data'] = $combined_array;
+
+            }
+
+             $data['pageTitle'] = 'Neclife - GSK Packing Invoice | Download';
+             $data['template']  = 'commercial-invoice/gsk/packing/invoice';
+             $this->load->view('template_admin',$data);
+ 
+         }
+
+        public function pdf_gsk_packing_invoice($id = ''){
+            
+            $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
+            $mpdf->SetDisplayMode('fullwidth');
+            $data = array();
+            $export_gsk_header = $this->export_gsk_header->findOne(array('invoice_id' => $id));
+            if(empty($id) && empty($export_gsk_header)) {
+
+                 $this->session->set_flashdata('error', 'Bad Request.');
+                 return redirect( base_url(). $this->router->fetch_classs(). '/gsk_packing_invoice');
+
+            } else {
+                   
+                $export_gsk_daitems = $this->export_gsk_daitems->findAll(array('da_no' => $export_gsk_header['da_no']));
+                $gsk_packing = $this->gsk_packing->findone(array('da_no' => $export_gsk_header['da_no']));
+                $gsk_packing_map = $this->gsk_packing_map->findAll(array('da_no' => $export_gsk_header['da_no']));
+
+                if(!empty($gsk_packing_map)) {
+                    
+                   $combined_array = array();
+                   foreach($gsk_packing_map as $key => $value) {
+                       $combined_array[trim($value['mfg_date'].'/'.$value['retest_date'])][] = $value['batch_no'];
+                   }
+
+                   $gsk_packing_map1 = array();
+                   $counter = 1;
+                   foreach ($gsk_packing_map as $key => $value) {
+
+                        for($i = 1 ; $i <= 6; $i++) {
+                               
+                                $gsk_packing_map1[] = array(
+                                    'data' => $value,
+                                    'bag_no1' => $i, 
+                                    'pallet_no'  => $counter
+                                       
+                                );
+                            }
+                        $counter++;
+                    }  
+                  
+                }
+
+                $data['invoice_data'] = $export_gsk_header;
+                $data['invoice_da_items'] = $export_gsk_daitems;
+                $data['gsk_packing'] = $gsk_packing;
+                $data['gsk_packing_map'] = $gsk_packing_map;
+                $data['gsk_packing_map1'] = $gsk_packing_map1;
+                $data['combined_data'] = $combined_array;
+
+            }
+             
+             $filename = 'GSK-Packing-List-'.$export_gsk_header['da_no_name'].'.pdf';
+             $html = $this->load->view('commercial-invoice/gsk/packing/invoice-pdf', $data , true);
              $mpdf->WriteHTML($html);
              $mpdf->Output($filename, 'D'); 
  

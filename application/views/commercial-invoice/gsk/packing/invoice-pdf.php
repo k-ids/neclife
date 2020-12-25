@@ -1,17 +1,16 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');  ?>
-
 <div class="card mb-3">
    <div class="card-block">
       <style type="text/css">
-	  @page {
-		  margin-left:5px!important;
-		   margin-right:5px!important;
-		   margin-top:5px!important;
-		   margin-bottom:5px!important;
-	   } 
-         table{    font-family:Arial, Helvetica, sans-serif;
+         @page {
+           margin-left:5px!important;
+            margin-right:5px!important;
+            margin-top:5px!important;
+            margin-bottom:5px!important;
+         } 
+         table{
+         font-family:Arial, Helvetica, sans-serif;
          font-size: 9px;
-         overflow: wrap;
          }
          span{
          padding-left:20px;
@@ -101,35 +100,32 @@
          list-style-type:decimal;
          }*/
       </style>
-      <table autosize="1" class="outer"   width="100%" border="0" cellspacing="0" cellpadding="0">
+     <table class="outer" width="100%" border="0" cellspacing="0" cellpadding="0">
          <tr>
-            <td colspan="6" align="center" valign="middle"><strong style="font-size: 20px;">COMMERCIAL INVOICE</strong></td>
+            <td colspan="7" align="center" valign="middle"><strong style="font-size: 20px;">PACKING LIST</strong></td>
          </tr>
          <tr>
             <td colspan="2" valign="top"><strong>Exporter/Manufacturer/Beneficiary - Name & Address </strong><br/>      <?= $invoice_data['address'] ?>
             </td>
-            
 
             <td width="34%" valign="top" style="border-right: 0 !important;">Invoice No. &amp; Date<br />
                   <strong><?= $invoice_data['invoice_no'] ?></strong><br />
                   <strong>DATED : <?= $invoice_data['invoice_date'] ?></strong><br />
                   
-                    Buyer's Order No.  &amp; Date<br />
-                    <b> <?= $invoice_data['buyer_order_number'] ?> <br><?= $invoice_data['buyer_order_date'] ?><br /></b>
-                  
-                  
+                   Buyer's Order No.  &amp; Date<br />
+                   <b> <?= $invoice_data['buyer_order_number'] ?> <br><?= $invoice_data['buyer_order_date'] ?><br /></b>
+
                   Other reference(s): <?= $invoice_data['other_reference'] ?><br />
                 <strong>DA NO. <?= $invoice_data['da_no_name'] ?> DATED <?= $invoice_data['da_date'] ?></strong> <br />
 
-               <?php if(!empty($invoice_data['contract_number'])) { ?>
+                 <?php if(!empty($invoice_data['contract_number'])) { ?>
                      <?= $invoice_data['contract_number'] ?>
                        <?= $invoice_data['contract_date'] ?><br />
                  <?php } ?>
-            
 
-                
             </td>
-            <td colspan="3" valign="top" style="border-left: 0 !important;"><strong>Export Reference </strong><br>
+
+            <td colspan="4" valign="top" style="border-left: 0 !important;"><strong>Export Reference </strong><br>
                <?= $invoice_data['export_reference'] ?>
             </td>
          </tr>
@@ -142,23 +138,20 @@
             </td>
             <td valign="top" style="border-right: 0 !important;">
                <strong>Buyer (if other than Consignee): </strong><br/>
-               <p>  <?= $invoice_data['buyer'] ?></p>
+                <p>  <?= $invoice_data['buyer'] ?></p>
                
                <?php if(!empty($invoice_data['notify'])) { ?>
-               <strong>NOTIFY 1</strong>:
-               <p>
-                  <?= $invoice_data['notify'] ?>
-               </p>
+                     <strong>NOTIFY 1</strong>:
+                     <p> <?= $invoice_data['notify'] ?> </p>
                <?php } ?>
-               
+
                <?php if(!empty($invoice_data['notify_1'])) { ?>
-                  <strong>NOTIFY 2</strong>:
-                    <p>  
-                     <?= $invoice_data['notify_1'] ?>
-                   </p>
+                     <strong>NOTIFY 2</strong>:
+                     <p>  <?= $invoice_data['notify_1'] ?> </p>
                <?php } ?>
+
             </td>
-            <td colspan="3" valign="top" style="border-left: 0 !important;">&nbsp;</td>
+            <td colspan="4" valign="top" style="border-left: 0 !important;">&nbsp;</td>
          </tr>
          <tr>
             <td width="20%" align="center" valign="top"><strong>Pre-carriage by</strong><br />
@@ -170,7 +163,7 @@
             <td align="left" valign="top"><strong>Country of Origin</strong><br />
                <?= $invoice_data['country'] ?>
             </td>
-            <td colspan="3" align="left" valign="top"><strong>Country of Final Destination </strong><br />
+            <td colspan="4" align="left" valign="top"><strong>Country of Final Destination</strong><br />
                <?= $invoice_data['final_destination'] ?>
             </td>
          </tr>
@@ -181,17 +174,19 @@
             <td align="center" valign="top"><strong>Port of Loading</strong><br />
                <?= $invoice_data['port_of_loading'] ?>
             </td>
-            <td colspan="4" rowspan="2" align="left" valign="top">
-               <strong>Terms of Delivery &amp; Payment </strong><br /> <br />
+            <td colspan="5" rowspan="2" align="left" valign="top">
+              <strong> Terms of Delivery &amp; Payment </strong><br />
+              <br />
                <p>
                   <strong>PRICE TERMS</strong>:
-                  <?= $invoice_data['term_of_delivery'] ?>
+                  <?= $invoice_data['term_of_delivery'] ?></p>
+               <p>
+                  <strong>PAYMENT</strong>: <?= $invoice_data['payment_terms'] ?>
                </p>
-               <p><strong>PAYMENT</strong>: <?= $invoice_data['payment_terms'] ?>
-               </p>
-               <br>
+
+
                  <?php if(!empty($invoice_data['lic_no'])) { ?>
-                       <?= $invoice_data['lic_no'] ?> <?= $invoice_data['lic_date'] ?>
+                      <?= $invoice_data['lic_no'] ?> <?= $invoice_data['lic_date'] ?>
                            
                   <?php } ?> 
             </td>
@@ -206,45 +201,56 @@
          </tr>
          <tr>
             <td width="20%" align="center" valign="top"><strong>Marks &amp; Nos./<br />
-               Drum no.</strong>
+               Container no.</strong>
             </td>
             <td width="25%"  align="center" valign="top"><strong>No. &amp; Kind of<br />
                Packages</strong>
             </td>
             <td align="center" valign="top"><strong>Description of Goods and/or Services </strong></td>
-            <td width="7%" align="center" valign="top"><strong>Quantity<br />
-               KGS</strong>
+            <td width="7%" align="center" valign="top"><strong>Pallet<br />
+               No.</strong>
             </td>
-            <td width="7%" align="center" valign="top"><strong>Rate<br />
-               <?= $invoice_data['currency_name'] ?>/KGS</strong>
+            <td width="10%" align="center" valign="top"><strong>Batch<br />No.
+               </strong>
             </td>
-            <td width="10%" align="center" valign="top"><strong>Amount<br />
-               <?= $invoice_data['currency_name'] ?></strong>
+            <td width="10%" align="center" valign="top"><strong>Net Wt.<br />in Kgs
+            </td>
+            <td width="7%" align="center" valign="top"><strong>Gross Wt.<br />of Pallet
             </td>
          </tr>
-         <?php if(!empty($invoice_da_items)) { 
-            $count = count($invoice_da_items);
-            $total_quantity = 0;
-            foreach($invoice_da_items as $outerKey => $value) {
-               $total_quantity+= $value['qty'];
-            ?>
+         <?php 
+            if(!empty($gsk_packing_map1)) { 
+            $count = count($gsk_packing_map1);
+            foreach($gsk_packing_map1 as $outerKey => $value) {
+            
+         ?>
          <tr>
-            <td style="border-bottom:0;" align="center" valign="top">
-               <p><?= $value['drum_nos'] ?></p>
-                         <?php if($outerKey == ($count -1)) { ?>
+            <td style="border-bottom:0; border-top:0 " align="center" valign="top">
+               <p>
+                  <b>
+                     <?php
+                      if($outerKey == '0') {
+                           if(!empty($invoice_da_items)) { 
+                              foreach($invoice_da_items as $daKey => $daValue) {
+                                    echo $daValue['marks_drum_no']. '<br>';
+                              }
+                           }
+                        }
+                     ?>
+                  </b>
+               </p>
+            
+              <?php if($outerKey == 0) { ?>
                    <p>&nbsp;</p>
-
-            <?php if(!empty($combined_data)) { 
+               <?php if(!empty($combined_data)) { 
                      foreach($combined_data as $cKey =>  $loopValue){ 
                      $exp_mfg = explode('/', $cKey);
                   ?>
                    <p>
                      <b>Batch No:</b> </br>
-                       
                      <?php foreach($loopValue as $loop) {
                             echo $loop .'<br>';
                       } ?>
-
                    </p>
                   <?php if(!empty($exp_mfg[1])) { ?>
                    <p>
@@ -256,75 +262,108 @@
                      <b>Exp date:</b>                          
                          <?= $exp_mfg[0] ?>
                   </p> 
-               <?php }  }  }?>
+               <?php }  }  } ?>
 
                <?php } ?>
             </td>
-            <td style="border-bottom:0" align="center" valign="top">
-               <p><b><?= $value['packing_type'] ?></b></p>
+            <td style="border-bottom:0;  border-top:0 " align="center" valign="top">
+               <p>
+                  <b>
+                     <?php 
+                        if($outerKey == '0') {
+                           if(!empty($invoice_da_items)) { 
+                              foreach($invoice_da_items as $daKey => $daValue) {
+                                    echo $daValue['kind_of_package']. '<br>';
+                              }
+                           }
+                        }
+                     ?>
+                  </b>
+               </p>  <br>
             </td>
-            <td style="border-bottom:0" align="center" valign="top">
-               <p> <b><?= $value['product'] ?> </b>
+            <td style="border-bottom:0;  border-top:0 " align="center" valign="top">
+               <p>
+                  <b>
+                     <?php
+                        if($outerKey == '0') { 
+                           if(!empty($invoice_da_items)) { 
+                              foreach($invoice_da_items as $daKey => $daValue) {
+                                    echo $daValue['description_of_goods']. '<br>';
+                              }
+                           }
+                        }
+                     ?>
+                  </b>
                <p> <br />
-                  <?php if($outerKey == ($count -1)) {
-                     if(!empty($invoice_data['shipping_marks'])) { ?>
-               <p><br />
-                  <?= $invoice_data['shipping_marks'] ?>
-               </p>
+
+               <?php if($outerKey == 0) {
+                  if(!empty($invoice_data['shipping_marks'])) { ?>
+                  <p>
+                      <?= $invoice_data['shipping_marks'] ?>
+                  </p>
                <?php } } ?>
             </td>
             <td style="border-bottom:0" align="center" valign="top">
-               <p><b><?= $value['qty'] ?></b></p>
+               <p>
+                  <b>
+                     <?= $value['pallet_no'] ?>
+                   </b>
+                </p>
             </td>
             <td style="border-bottom:0" align="center" valign="top">
-               <p><b><?= $value['rate']?></b></p>
+               <p>
+                  <b>
+                      <?php 
+                         if($value['bag_no1'] == '1') { 
+                              echo $value['data']['batch_no'].'<br>';
+                         } else {
+                              echo "--do--".'<br>';
+                         }
+                      ?>
+                   </b> 
+               </p>
             </td>
             <td align="center" valign="top">
                <blockquote>
-                  <p><b><?= $value['amount'] ?></b></p>
+                  <p>
+                     <b> 
+                        <?= $value['data']['net_wt']; ?>
+                      </b>
+                  </p>
+               </blockquote>
+            </td>
+            <td> 
+               <blockquote>
+                  <p>
+                     <b>
+                     <?php 
+                         if($value['bag_no1'] == '1') { 
+                              echo $value['data']['gross_wt_pallet'].'<br>';
+                         } else {
+                              echo "".'<br>';
+                         }
+                        ?>
+                      </b>
+                  </p>
                </blockquote>
             </td>
          </tr>
          <?php } } ?>
-		 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-		 <!-- full page height of a4 is 1403px  
-		 426px
-		 -->
-		 <script type="text/javascript">
-			/*
-			jQuery(function($) {
-				var pdf_required_height = 1193;
-				var doc_total_height = $('.card:visible').height(); // 1193 will give you calculated height
-				if(doc_total_height < '1193'){
-					var add_height = pdf_required_height - doc_total_height+'px';
-					$(".adjust_height").css("line-height", add_height); 
-				}
-				//alert(doc_total_height);
-			});
-			*/
-		 </script>
-		 
-		 <tr>
-            <td class="adjust_height" style="border-top:0;line-height:0px;"> <span style="visibility:hidden">Full Height</span></td>
-            <td style="border-top:0;"></td>
-            <td style="border-top:0;"></td>
-            <td style="border-top:0;"></td>
-            <td style="border-top:0;"></td>
-            <td style="border-top:0;"></td>
-         </tr>
-		 <!-- -->
          <tr>
+            <td style="border-top:0;"></td>
             <td style="border-top:0;"></td>
             <td style="border-top:0;"></td>
             <td style="border-top:0;"></td>
             <td>
-               <strong><?= number_format((float)$total_quantity, 2, '.', '') ?></strong>
+               <strong></strong>
             </td>
-            <td></td>
-            <td><strong><?= $invoice_data['total'] ?></td>
+            <td><strong><?= $gsk_packing['grand_net'] ?></strong></td>
+            <td>
+               <strong><?= $gsk_packing['grand_gross_pallet'] ?></strong>
+            </td>
          </tr>
          <tr>
-            <td colspan="6"><strong>Amount Chargeable (in words) <?= $invoice_data['currency_name'] ?> ======></strong>&nbsp;&nbsp;&nbsp;&nbsp;<?= $invoice_data['total_amount_words'] ?></td>
+            <td colspan="7"><strong>Amount Chargeable (in words) <?= $invoice_data['currency_name'] ?> ======></strong>&nbsp;&nbsp;&nbsp;&nbsp;<?= $invoice_data['total_amount_words'] ?></td>
          </tr>
          <tr>
             <td style="border-right:0; border-bottom:0" colspan="3">
@@ -340,21 +379,17 @@
                      <td><?= $invoice_data['ie_code_no'] ?></td>
                   </tr>
                   <tr>
-                     <?php if(!empty($advance_lic_no)) { ?>
-                         <td><strong>ADV.LIC. NO</strong></td>
+                  <?php if(!empty($invoice_data['ad_lic_file_no'])) { ?>
+                         <td><strong>Advance Lic File No.</strong></td>
                          <td>:</td>
-                         <td><strong><?= $advance_lic_no ?></strong></td>
-                     <?php } else { ?>
-                         <td><strong>UNDER DBK 2941B</strong></td>
-                     <?php  } ?>
+                         <td><strong><?= $invoice_data['ad_lic_file_no'] ?></strong></td>
+                     <?php } ?>
                   </tr>
-                  <tr>
-                     <td colspan="3"><strong>&quot;<?= $invoice_data['declaration'] ?></strong></td>
-                  </tr>
+                  
                   <tr>
                      <td><strong>NET WEIGHT</strong></td>
                      <td>:</td>
-                     <td><strong><?= $invoice_data['net_weight']. ' KGS' ?></strong></td>
+                     <td><strong><?= $invoice_data['net_weight'] . ' KGS'?></strong></td>
                   </tr>
                   <tr>
                      <td><strong>TARE WEIGHT</strong></td>
@@ -364,26 +399,31 @@
                   <tr>
                      <td><strong>GROSS WEIGHT</strong></td>
                      <td>:</td>
-                     <td><strong><?= $invoice_data['gross_weight'] . ' KGS'?></strong></td>
+                     <td><strong><?= $invoice_data['gross_weight']. ' KGS' ?></strong></td>
                   </tr>
                </table>
             </td>
-            <td style="border-left:0; border-bottom:0" colspan="3">
-
+            <td style="border-left:0; border-bottom:0" colspan="4">
+               <table class="border" width="100%" border="0" cellspacing="0" cellpadding="0">
+                  
+                  
+                 
+               </table>
             </td>
          </tr>
-
          <tr>
             <td style="border-right:0; border-top:0" colspan="3">
                <table class="outer" width="100%" border="0" cellspacing="0" cellpadding="0">
                   <tr>
-                     <td width="51%" align="left" valign="top"><strong>Declaration:</strong><br />
-                        <?= $invoice_data['declaretion_final'] ?>
-                     </td>
+                     <?php if(!empty($invoice_data['declaretion_final'])) { ?>
+                        <td width="51%" align="left" valign="top"><strong>Declaration:</strong><br />
+                           <?= $invoice_data['declaretion_final'] ?>
+                        </td>
+                     <?php } ?>
                   </tr>
                </table>
             </td>
-            <td colspan="3" align="right" valign="bottom" style="border-left:0; border-top:0">
+            <td colspan="4" align="right" valign="bottom" style="border-left:0; border-top:0">
                <table class="outer" width="100%" border="0" cellspacing="0" cellpadding="0">
                   <tr>
                      <td width="51%">For <strong>NECTAR LIFESCIENCES LTD.</strong><br />
@@ -403,4 +443,3 @@
       </table>
    </div>
 </div>
-<?php //die('here'); ?>

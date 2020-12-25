@@ -209,7 +209,7 @@ if (!defined('HEAD_MAGNIFICATION')) {
 }
 
 if (!defined('K_CELL_HEIGHT_RATIO')) {
-	define('K_CELL_HEIGHT_RATIO', 1.25);
+	define('K_CELL_HEIGHT_RATIO', 3.25);
 }
 
 if (!defined('K_TITLE_MAGNIFICATION')) {

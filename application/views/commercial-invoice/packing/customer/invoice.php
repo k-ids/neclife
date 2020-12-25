@@ -448,7 +448,7 @@
                </tr>
             </table> -->
          </td>
-         <td colspan="<?php if($invoice_datype == '1' && !empty($show_seal_no)) { echo "4"; } else if($invoice_datype == '3' || $invoice_datype == '5') { echo "5"; } else { echo "4"; } ?>" align="right" valign="bottom" style="border-left:0; border-top:0">
+         <td colspan="<?php if($invoice_datype == '1' && !empty($show_seal_no)) { echo "5"; } else if($invoice_datype == '3' || $invoice_datype == '5') { echo "5"; } else { echo "4"; } ?>" align="right" valign="bottom" style="border-left:0; border-top:0">
             <table class="outer" width="100%" border="0" cellspacing="0" cellpadding="0">
                <tr>
                   <td width="51%">For <strong>NECTAR LIFESCIENCES LTD.</strong><br />

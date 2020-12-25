@@ -272,17 +272,15 @@
       <tr>
          <td style="border-bottom:0; border-top: 0;" align="center" valign="top">
                 <p><?= !empty($value['drum_nos']) ? $value['drum_nos'] : '' ?></p>
-                     
-                  
-                  <?php //if($outerKey == ($count -1)) {
-                      if($outerKey == 0) { 
+                       
+                <?php //if($outerKey == ($count -1)) {
+                  if($outerKey == 0) { 
                     if(!empty($combined_data)) { 
                      foreach($combined_data as $cKey =>  $loopValue){ 
                      $exp_mfg = explode('/', $cKey);
-                  ?>
-                   <p>
-                     <b>Batch No:</b> </br>
-                       
+                ?>
+                  <p>
+                     <b>Batch No:</b> </br> 
                      <?php foreach($loopValue as $loop) {
                             echo $loop .'<br>';
                       } ?>
@@ -364,6 +362,20 @@
         
         </tr>
         <?php }?>
+
+        <tr colspan>
+            <td class="adjust_height" style="border-top:0;line-height:426px;"> <span style="visibility:hidden">Full Height</span></td>
+            <td style="border-top:0;"></td>
+            <td style="border-top:0;"></td>
+            <td style="border-top:0;"></td>
+            <td style="border-top:0;"></td>
+            <td style="border-top:0;"></td>
+            <td style="border-top:0;"></td>
+            <?php if($invoice_datype == '1' && !empty($show_seal_no)) { ?>
+               <td style="border-top:0;"></td>
+            <?php } ?>
+         </tr>
+
         <tr>
            <td style="border-top:0;"></td>
            <td style="border-top:0;"></td>
@@ -451,7 +463,7 @@
                </tr>
             </table>
          </td>
-         <td colspan="<?php if($invoice_datype == '1' && !empty($show_seal_no)) { echo "4"; } else if($invoice_datype == '3' || $invoice_datype == '5') { echo "5"; } else { echo "4"; } ?>" align="right" valign="bottom" style="border-left:0; border-top:0">
+         <td colspan="<?php if($invoice_datype == '1' && !empty($show_seal_no)) { echo "5"; } else if($invoice_datype == '3' || $invoice_datype == '5') { echo "5"; } else { echo "4"; } ?>" align="right" valign="bottom" style="border-left:0; border-top:0">
             <table class="outer" width="100%" border="0" cellspacing="0" cellpadding="0">
                <tr>
                   <td width="51%">For <strong>NECTAR LIFESCIENCES LTD.</strong><br />

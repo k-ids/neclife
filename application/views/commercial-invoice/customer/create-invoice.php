@@ -269,10 +269,10 @@
                <?php } ?>
             </td>
             <td style="border-bottom:0" align="center" valign="top">
-               <p><?= $value['packing_type'] ?> </p>
+               <p><b><?= $value['packing_type'] ?></b></p>
             </td>
             <td style="border-bottom:0" align="center" valign="top">
-               <p> <?= $value['product'] ?> 
+               <p> <b><?= $value['product'] ?></b> 
                <p> <br />
                   <?php if($outerKey == ($count -1)) {
                      if(!empty($invoice_data['shipping_marks'])) { ?>
@@ -282,14 +282,14 @@
                <?php } } ?>
             </td>
             <td style="border-bottom:0" align="center" valign="top">
-               <p><?= $value['qty'] ?></p>
+               <p><b><?= $value['qty'] ?></b></p>
             </td>
             <td style="border-bottom:0" align="center" valign="top">
-               <p><?= $value['rate']?> </p>
+               <p><b><?= $value['rate']?></b> </p>
             </td>
             <td align="center" valign="top">
                <blockquote>
-                  <p><?= $value['amount'] ?></p>
+                  <p><b><?= $value['amount'] ?></b></p>
                </blockquote>
             </td>
          </tr>

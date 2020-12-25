@@ -87,7 +87,7 @@
                   <td><?= $value["party"] ?></td>
                   <td><?= $value["financial_year"] ?></td>
                   <td><?= $value["da_no"] ?></td>
-                  <td><?= $value['datype_name'] . $value['invoice_type']?></td>
+                  <td><?= $value['datype_name'] ?></td>
                   <td>
                     <?php if(empty($value['packing_invoice_id'])) {
                         $url = base_url().$this->router->fetch_class().'/generate_packing_invoice/'.$value['id'] ;

@@ -1,6 +1,12 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');  ?>
 
 		<style type="text/css">
+			 @page {
+		       margin-left:5px!important;
+		       margin-right:5px!important;
+		       margin-top:5px!important;
+		       margin-bottom:5px!important;
+	        } 
 			table{
 				font-family:Arial, Helvetica, sans-serif;
 				font-size: 10px;

@@ -92,18 +92,18 @@
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Download GSK Packing Invoice <?= $value["da_no"].' ('.$value['datype_name'] .')'?></h5>
+                              <h5 class="modal-title" id="exampleModalLabel">Download GSK Invoice <?= $value["da_no"].' ('.$value['datype_name'] .')'?></h5>
                               
                             </div>
                             <div class="modal-body" style="height: 150px;">
                               <div class="row">
-                                  <div class="col-md-6" style="padding-left: 150px; padding-top: 30px;">
+                                  <div class="col-md-6" style="padding-left: 28px; padding-top: 30px;">
                                      <a target="_blank" class="btn btn-warning" href="<?= base_url().$this->router->fetch_class().'/download_gsk_invoice/'.$value['gsk_invoice_id'] ?>" ><i class="fa fa-file-pdf-o"></i>&nbsp;Download INVOICE</a>
                                   </div>
 
-                                  <!-- <div class="col-md-6" style="padding-left: 20px; padding-top: 30px;">
-                                    <a target="_blank" class="btn btn-success" href="<?= base_url().$this->router->fetch_class().'/download_gsk_invoice/'.$value['gsk_invoice_id'] ?>" ><i class="fa fa-file-pdf-o"></i>&nbsp;CUSTOMER INVOICE</a>
-                                  </div> -->
+                                  <div class="col-md-6" style="padding-left: 28px; padding-top: 30px;">
+                                    <a target="_blank" class="btn btn-success" href="<?= base_url().$this->router->fetch_class().'/download_gsk_packing_invoice/'.$value['gsk_invoice_id'] ?>" ><i class="fa fa-file-pdf-o"></i>&nbsp;Download Packing List</a>
+                                  </div>
                               </div>
                             </div>
 

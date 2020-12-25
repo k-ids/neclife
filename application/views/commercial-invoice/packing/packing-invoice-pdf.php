@@ -111,18 +111,18 @@
             <td width="34%" valign="top" style="border-right: 0 !important;">Invoice No. &amp; Date<br />
                   <strong><?= $invoice_data['invoice_no'] ?></strong><br />
                   <strong>DATED : <?= $invoice_data['invoice_date'] ?></strong><br />
+                 
+                    Buyer's Order No.  &amp; Date<br />
+                 <b> <?= $invoice_data['buyer_order_number'] ?> <br><?= $invoice_data['buyer_order_date'] ?><br /></b>
                   
-                   Buyer's Order No.  &amp; Date<br />
-                   <b> <?= $invoice_data['buyer_order_number'] ?> <br><?= $invoice_data['buyer_order_date'] ?><br /></b>
-
                   Other reference(s): <?= $invoice_data['other_reference'] ?><br />
                 <strong>DA NO. <?= $invoice_data['da_no_name'] ?> DATED <?= $invoice_data['da_date'] ?></strong> <br />
 
-                <?php if(!empty($invoice_data['contract_number'])) { ?>
-                      <?= $invoice_data['contract_number'] ?>
-                        <?= $invoice_data['contract_date'] ?><br />
+                    <?php if(!empty($invoice_data['contract_number'])) { ?>
+                     <?= $invoice_data['contract_number'] ?>
+                       <?= $invoice_data['contract_date'] ?><br />
                  <?php } ?>
-            
+             
                  
             </td>
             <td colspan="<?php if($invoice_datype == '1' && !empty($show_seal_no)) { echo "5"; } else if($invoice_datype == '3' || $invoice_datype == '5') { echo "6"; } else { echo "4"; } ?>" valign="top" style="border-left: 0 !important;"><strong>Export Reference</strong> <br>
@@ -167,7 +167,7 @@
             <td align="left" valign="top"><strong>Country of Origin</strong><br />
                <?= $invoice_data['country'] ?>
             </td>
-            <td colspan="<?php if($invoice_datype == '1' && !empty($show_seal_no)) { echo "5"; } else if($invoice_datype == '3' || $invoice_datype == '5') {echo "6"; } else { echo "4"; } ?>" align="left" valign="top"><strong>Country of Final Destination</strong> <br />
+            <td colspan="<?php if($invoice_datype == '1' && !empty($show_seal_no)) { echo "5"; } else if($invoice_datype == '3' || $invoice_datype == '5') { echo "7"; } else { echo "4"; } ?>" align="left" valign="top"><strong>Country of Final Destination</strong> <br />
              <?= $invoice_data['final_destination'] ?>
             </td>
          </tr>
@@ -185,14 +185,13 @@
                   <strong>PRICE TERMS</strong>:
                   <?= $invoice_data['term_of_delivery'] ?></p>
                <p>
-                <strong>PAYMENT</strong>: <?= $invoice_data['payment_terms'] ?> 
+                  <strong>PAYMENT</strong>: <?= $invoice_data['payment_terms'] ?>
                </p>
 
-                <?php if(!empty($invoice_data['lic_no'])) { ?>
-                       <?= $invoice_data['lic_no'] ?>
-                       <?= $invoice_data['lic_date'] ?>
+                   <?php if(!empty($invoice_data['lic_no'])) { ?>
+                      <?= $invoice_data['lic_no'] ?> <?= $invoice_data['lic_date'] ?>
                            
-                  <?php } ?>
+                  <?php } ?> 
 
             </td>
          </tr>
@@ -218,7 +217,7 @@
             <td width="10%" align="center" valign="top"><strong>Box <br />
               no.</strong>
            </td>
-             <td width="10%" align="center" valign="top"><strong>Total Nos of Box <br />
+           <td width="10%" align="center" valign="top"><strong>Total Nos of Box <br />
               no.</strong>
            </td>
            <td width="10%" align="center" valign="top"><strong>Total Nos of Packs <br />
@@ -250,17 +249,18 @@
              $total_net_wt = 0;
              $total_gross_wt = 0;
              foreach($invoice_packing_list as $outerKey => $value) {
-                
+                 
               $total_net_wt+= $value['net_weight'];
               $total_gross_wt+= $value['outer_gross_weight'];
         ?>
       <tr>
          <td style="border-bottom:0; border-top: 0;" align="center" valign="top">
                 <p><?= !empty($value['drum_nos']) ? $value['drum_nos'] : '' ?></p>
-                                <?php if($outerKey == 0) { ?>
-                   <p>&nbsp;</p>
-
-            <?php if(!empty($combined_data)) { 
+                     
+                  
+                  <?php //if($outerKey == ($count -1)) {
+                      if($outerKey == 0) { 
+                    if(!empty($combined_data)) { 
                      foreach($combined_data as $cKey =>  $loopValue){ 
                      $exp_mfg = explode('/', $cKey);
                   ?>
@@ -287,17 +287,15 @@
                <?php } ?>
          </td>
          <td style="border-bottom:0; border-top: 0;" align="center" valign="top">
-            <?php if($outerKey == 0) { ?>
+           <?php if($outerKey == 0) { ?>
              <p><?= $value['packing_type'] ?>
             </p>
 
           <?php } ?>
-          <br />
-        
           
          </td>
          <td style="border-bottom:0; border-top: 0;" align="center" valign="top">
-           <?php 
+            <?php 
                if($outerKey == 0) { ?>
                   <p>
                     <b><?= $value['product'] ?></b>
@@ -308,7 +306,7 @@
                   </p>
                    <?php } } ?>
             <br />
-            
+  
          </td>
           <?php if($invoice_datype == '3' || $invoice_datype =='5' ) { ?>
              <td style="border-bottom:0" align="center" valign="top">
@@ -316,7 +314,7 @@
                     <p><?= $value['box_no'] ?></p>
                 </blockquote>
              </td>
-               <td style="border-bottom:0" align="center" valign="top">
+             <td style="border-bottom:0" align="center" valign="top">
                 <blockquote>
                     <p><?= $value['total_no_boxes'] ?></p>
                 </blockquote>
@@ -327,16 +325,16 @@
                 </blockquote>
              </td>
          <?php } else { ?>
-             <td style="border-bottom:0" align="center" valign="top">
+             <td style="" align="center" valign="top">
               <blockquote>
                   <p><?= $value['excise_sr_no'] ?></p>
               </blockquote>
            </td>
          <?php } ?>
-         <td style="border-bottom:0" align="center" valign="top">
+         <td style="" align="center" valign="top">
             <p><?= $value['batch_no'] ?></p>
          </td>
-          <td style="border-bottom:0" align="center" valign="top">
+          <td style="" align="center" valign="top">
             <p><?= $value['net_weight'] ?></p>
          </td>
          <td align="center" valign="top">
@@ -349,17 +347,38 @@
           <?php } ?>
         
         </tr>
-        <?php }?>
+        <?php }
+         
+          if($count < 50 && str_word_count($invoice_data['shipping_marks']) < 10)
+              $line_height = 'line-height:680px';
+          elseif($count < 50 && str_word_count($invoice_data['shipping_marks']) > 10)
+              $line_height = 'line-height:426px';
+          else
+              $line_height = '';
+        ?>
+
+        <tr colspan>
+            <td class="adjust_height" style="border-top:0; <?= $line_height ?>;"> <span style="visibility:hidden">Full Height</span></td>
+            <td style="border-top:0;"></td>
+            <td style="border-top:0;"></td>
+            <td style="border-top:0;"></td>
+            <td style="border-top:0;"></td>
+            <td style="border-top:0;"></td>
+            <td style="border-top:0;"></td>
+            <?php if($invoice_datype == '1' && !empty($show_seal_no)) { ?>
+               <td style="border-top:0;"></td>
+            <?php } ?>
+         </tr>
         <tr>
            <td style="border-top:0;"></td>
            <td style="border-top:0;"></td>
            <td style="border-top:0;"></td>
            <td style="border-top:0;"></td>
            <td style="border-top:0;"></td>
-           <?php if($invoice_datype == '3' || $invoice_datype =='5' ) { ?>
+          <?php if($invoice_datype == '3' || $invoice_datype =='5' ) { ?>
            <td style="border-top:0;"></td>
            <td style="border-top:0;"></td>
-           <?php } ?>
+          <?php } ?>
            <td>
               <strong><?= !empty($invoice_packing_list) ? sprintf('%0.2f', $total_net_wt) : ''?></strong>
            </td>
@@ -371,11 +390,12 @@
            <?php  }?>
         </tr>
       <?php } else {
-
+             
             if(!empty($invoice_packing_list)) {
+             // echo "<pre>";print_r($invoice_packing_list);die;
                $total_net_wt = 0;
                $total_gross_wt = 0;
-               foreach($invoice_packing_list as $outerKey=> $value) { 
+               foreach($invoice_packing_list as $outerKey => $value) { 
 
                 $total_net_wt+= $value['net_weight'];
                 $total_gross_wt+= $value['gross_weight'];
@@ -407,7 +427,7 @@
             
          </td>
         </tr>
-      <?php } ?>
+      <?php }  ?>
         <tr>
            <td style="border-top:0;"></td>
            <td style="border-top:0;"></td>
@@ -422,9 +442,9 @@
             </td>
         </tr>
 
-      <?php } } ?>
+      <?php  } } ?>
       <tr>
-         <td style="border-right:0; border-top:0" colspan="4">
+         <td style="border-right:0; border-top:0" colspan="3">
             <table class="outer" width="100%" border="0" cellspacing="0" cellpadding="0">
                <tr>
                   <?php if(!empty($invoice_data['declaretion_final'])) { ?>
@@ -436,7 +456,7 @@
                </tr>
             </table>
          </td>
-         <td colspan="<?php if($invoice_datype == '1' && !empty($show_seal_no)) { echo "4"; } else if($invoice_datype == '3' || $invoice_datype == '5') { echo "5"; } else { echo "3"; } ?>" align="right" valign="bottom" style="border-left:0; border-top:0">
+         <td colspan="<?php if($invoice_datype == '1' && !empty($show_seal_no)) { echo "5"; } else if($invoice_datype == '3' || $invoice_datype == '5') { echo "5"; } else { echo "4"; } ?>" align="right" valign="bottom" style="border-left:0; border-top:0">
             <table class="outer" width="100%" border="0" cellspacing="0" cellpadding="0">
                <tr>
                   <td width="51%">For <strong>NECTAR LIFESCIENCES LTD.</strong><br />

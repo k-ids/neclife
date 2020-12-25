@@ -253,7 +253,7 @@
                     
                    
                      <li>
-                        <a class="<?= !empty($this->router->fetch_class()=='commercial_invoice' && ($this->router->fetch_method()=='gsk_packing_invoice' || $this->router->fetch_method()=='generate_gsk_invoice' || $this->router->fetch_method() =='update_gsk_invoice'  || $this->router->fetch_method() =='download_gsk_invoice') )? 'sub-menu-class' : ''?>" href="<?=base_url().'commercial_invoice/gsk_packing_invoice' ?>">&nbsp;GSK Packing-Invoice</a>
+                        <a class="<?= !empty($this->router->fetch_class()=='commercial_invoice' && ($this->router->fetch_method()=='gsk_packing_invoice' || $this->router->fetch_method()=='generate_gsk_invoice' || $this->router->fetch_method() =='update_gsk_invoice'  || $this->router->fetch_method() =='download_gsk_invoice' || $this->router->fetch_method() == 'download_gsk_packing_invoice') )? 'sub-menu-class' : ''?>" href="<?=base_url().'commercial_invoice/gsk_packing_invoice' ?>">&nbsp;GSK Invoice</a>
                      </li>
                      
 
