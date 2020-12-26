@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');  ?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed');  ob_start(); ?>
 <div class="card mb-3">
    <div class="card-block">
       <style type="text/css">
@@ -221,91 +221,97 @@
          <?php 
             if(!empty($gsk_packing_map1)) { 
             $count = count($gsk_packing_map1);
-            foreach($gsk_packing_map1 as $outerKey => $value) {
+           // foreach($gsk_packing_map1 as $outerKey => $value) {
+            for($i = 0; $i < $count; $i++) {
          ?>
          <tr>
-            <td style="border-bottom:0; border-top:0 " align="center" valign="top">
+          <?php if($i == 0) { ?>
+            <td rowspan="<?=$count?>" style="border-bottom:0; border-top:0 " align="center" valign="top">
                <p>
                   <b>
                      <?php
-                      if($outerKey == '0') {
+                     // if($outerKey == '0') {
                            if(!empty($invoice_da_items)) { 
                               foreach($invoice_da_items as $daKey => $daValue) {
                                     echo $daValue['marks_drum_no']. '<br>';
                               }
                            }
-                        }
+                      //  }
                      ?>
                   </b>
                </p>
             
-              <?php if($outerKey == 0) { ?>
-                   <p>&nbsp;</p>
-               <?php if(!empty($combined_data)) { 
-                     foreach($combined_data as $cKey =>  $loopValue){ 
-                     $exp_mfg = explode('/', $cKey);
-                  ?>
-                   <p>
-                     <b>Batch No:</b> </br>
-                     <?php foreach($loopValue as $loop) {
-                            echo $loop .'<br>';
-                      } ?>
-                   </p>
-                  <?php if(!empty($exp_mfg[1])) { ?>
-                   <p>
-                     <b>Mfg date:</b> 
-                        <?= $exp_mfg[1] ?>
-                   </p>
-                   <?php } if(!empty($exp_mfg[0])) {?>  
-                   <p> 
-                     <b>Exp date:</b>                          
-                         <?= $exp_mfg[0] ?>
-                  </p> 
-               <?php }  }  } ?>
+                <?php //if($outerKey == 0) { ?>
+                     <p>&nbsp;</p>
+                 <?php if(!empty($combined_data)) { 
+                       foreach($combined_data as $cKey =>  $loopValue){ 
+                       $exp_mfg = explode('/', $cKey);
+                    ?>
+                     <p>
+                       <b>Batch No:</b> </br>
+                       <?php foreach($loopValue as $loop) {
+                              echo $loop .'<br>';
+                        } ?>
+                     </p>
+                    <?php if(!empty($exp_mfg[1])) { ?>
+                     <p>
+                       <b>Mfg date:</b> 
+                          <?= $exp_mfg[1] ?>
+                     </p>
+                     <?php } if(!empty($exp_mfg[0])) {?>  
+                     <p> 
+                       <b>Exp date:</b>                          
+                           <?= $exp_mfg[0] ?>
+                    </p> 
+                 <?php }  }  } ?>
 
-               <?php } ?>
+                 <?php //} ?>
             </td>
-            <td style="border-bottom:0;  border-top:0 " align="center" valign="top">
+            <td rowspan="<?=$count?>" style="border-bottom:0;  border-top:0 " align="center" valign="top">
                <p>
                   <b>
                      <?php 
-                        if($outerKey == '0') {
+                        //if($outerKey == '0') {
                            if(!empty($invoice_da_items)) { 
                               foreach($invoice_da_items as $daKey => $daValue) {
                                     echo $daValue['kind_of_package']. '<br>';
                               }
                            }
-                        }
+                        //}
                      ?>
                   </b>
                </p>  <br>
             </td>
-            <td style="border-bottom:0;  border-top:0 " align="center" valign="top">
+            <td rowspan="<?=$count?>" style="border-bottom:0;  border-top:0 " align="center" valign="top">
                <p>
                   <b>
                      <?php
-                        if($outerKey == '0') { 
+                        //if($outerKey == '0') { 
                            if(!empty($invoice_da_items)) { 
                               foreach($invoice_da_items as $daKey => $daValue) {
                                     echo $daValue['description_of_goods']. '<br>';
                               }
                            }
-                        }
+                       // }
                      ?>
                   </b>
                <p> <br />
 
-               <?php if($outerKey == 0) {
+               <?php //if($outerKey == 0) {
                   if(!empty($invoice_data['shipping_marks'])) { ?>
                   <p>
                       <?= $invoice_data['shipping_marks'] ?>
                   </p>
-               <?php } } ?>
+               <?php } 
+              //} ?>
             </td>
+
+           <?php } ?>
+
             <td style="border-bottom:0" align="center" valign="top">
                <p>
                   <b>
-                     <?= $value['pallet_no'] ?>
+                     <?= $gsk_packing_map1[$i]['pallet_no'] ?>
                    </b>
                 </p>
             </td>
@@ -313,8 +319,8 @@
                <p>
                   <b>
                       <?php 
-                         if($value['bag_no1'] == '1') { 
-                              echo $value['data']['batch_no'].'<br>';
+                         if($gsk_packing_map1[$i]['bag_no1'] == '1') { 
+                              echo $gsk_packing_map1[$i]['data']['batch_no'].'<br>';
                          } else {
                               echo "--do--".'<br>';
                          }
@@ -326,7 +332,7 @@
                <blockquote>
                   <p>
                      <b> 
-                        <?= $value['data']['net_wt']; ?>
+                        <?= $gsk_packing_map1[$i]['data']['net_wt']; ?>
                       </b>
                   </p>
                </blockquote>
@@ -336,8 +342,8 @@
                   <p>
                      <b>
                      <?php 
-                         if($value['bag_no1'] == '1') { 
-                              echo $value['data']['gross_wt_pallet'].'<br>';
+                         if($gsk_packing_map1[$i]['bag_no1'] == '1') { 
+                              echo $gsk_packing_map1[$i]['data']['gross_wt_pallet'].'<br>';
                          } else {
                               echo "".'<br>';
                          }
@@ -347,7 +353,9 @@
                </blockquote>
             </td>
          </tr>
-         <?php } } ?>
+         <?php } 
+          } 
+         ?>
          <?php for($i = 0; $i < $invoice_data['gsk_packing_blank_counter']; $i++ ) { ?>
            <tr style="line-height: 60px;">
               <td style="border-top:0; border-bottom:0;"></td>
