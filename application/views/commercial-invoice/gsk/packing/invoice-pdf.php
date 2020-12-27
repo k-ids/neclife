@@ -328,7 +328,7 @@
                    </b> 
                </p>
             </td>
-            <td align="center" valign="top">
+            <td style="border-bottom:0" align="center" valign="top">
                <blockquote>
                   <p>
                      <b> 
@@ -337,7 +337,7 @@
                   </p>
                </blockquote>
             </td>
-            <td> 
+            <td style="border-bottom:0"> 
                <blockquote>
                   <p>
                      <b>
