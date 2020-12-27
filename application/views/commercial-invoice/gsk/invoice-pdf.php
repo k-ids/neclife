@@ -223,15 +223,25 @@
          <?php if(!empty($invoice_da_items)) { 
             $count = count($invoice_da_items);
             $total_quantity = 0;
-            foreach($invoice_da_items as $outerKey => $value) {
-               $total_quantity+= $value['qty'];
-           
+            //foreach($invoice_da_items as $outerKey => $value) {
+            for($i = 0; $i < $count; $i++) {
+               $total_quantity+= $invoice_da_items[$i]['qty'];
             ?>
          <tr>
-            <td style="border-bottom:0" align="center" valign="top">
-               <p><b><?= $value['marks_drum_no'] ?></b></p>
+            <?php  if($i == 0) { ?>
+            <td rowspan="<?=$count?>" style="border-bottom:0" align="center" valign="top">
+               <p><b>  <?php
+                     // if($outerKey == '0') {
+                           if(!empty($invoice_da_items)) { 
+                              foreach($invoice_da_items as $daKey => $daValue) {
+                                    echo $daValue['marks_drum_no']. '<br>';
+                              }
+                           }
+                      //  }
+                     ?></b>
+               </p>
             
-              <?php if($outerKey == ($count -1)) { ?>
+              <?php //if($outerKey == ($count -1)) { ?>
                    <p>&nbsp;</p>
                <?php if(!empty($combined_data)) { 
                      foreach($combined_data as $cKey =>  $loopValue){ 
@@ -242,52 +252,75 @@
                      <?php foreach($loopValue as $loop) {
                             echo $loop .'<br>';
                       } ?>
-                   </p> 
-
+                   </p>
                   <?php if(!empty($exp_mfg[1])) { ?>
                    <p>
                      <b>Mfg date:</b> 
                         <?= $exp_mfg[1] ?>
-                   </p> 
-                  
+                   </p>
                    <?php } if(!empty($exp_mfg[0])) {?>  
                    <p> 
                      <b>Exp date:</b>                          
                          <?= $exp_mfg[0] ?>
-                  </p> <p>&nbsp;</p>
-
+                  </p> 
                <?php }  }  } ?>
 
-               <?php } ?>
-
-            </td>
-            <td style="border-bottom:0" align="center" valign="top">
-               <p><b><?= $value['kind_of_package'] ?> </b></p> <br>
                
             </td>
-            <td style="border-bottom:0" align="center" valign="top">
-               <p> <b><?= $value['description_of_goods'] ?> </b>
+            <td rowspan="<?=$count?>" style="border-bottom:0" align="center" valign="top">
+               <p>
+                  <b>
+                     <?php 
+                        //if($outerKey == '0') {
+                           if(!empty($invoice_da_items)) { 
+                              foreach($invoice_da_items as $daKey => $daValue) {
+                                    echo $daValue['kind_of_package']. '<br>';
+                              }
+                           }
+                        //}
+                     ?> 
+                  </b> 
+               </p> <br>
+               
+            </td>
+            <td rowspan="<?=$count?>" style="border-bottom:0" align="center" valign="top">
+               <p> 
+                  <b>
+                     <?php
+                        //if($outerKey == '0') { 
+                           if(!empty($invoice_da_items)) { 
+                              foreach($invoice_da_items as $daKey => $daValue) {
+                                    echo $daValue['description_of_goods']. '<br>';
+                              }
+                           }
+                       // }
+                     ?> 
+                  </b>
                <p> <br />
-               <?php if($outerKey == ($count -1)) {
+               <?php 
+                //if($outerKey == ($count -1)) {
                   if(!empty($invoice_data['shipping_marks'])) { ?>
                   <p>
                       <?= $invoice_data['shipping_marks'] ?>
                   </p>
-               <?php } } ?>
+               <?php } 
+                 //} ?>
+            </td>
+            <?php } ?>
+            <td style="border-bottom:0" align="center" valign="top">
+               <p><b><?= $invoice_da_items[$i]['qty'] ?></b></p>
             </td>
             <td style="border-bottom:0" align="center" valign="top">
-               <p><b><?= $value['qty'] ?></b></p>
-            </td>
-            <td style="border-bottom:0" align="center" valign="top">
-               <p><b><?= $value['rate']?></b> </p>
+               <p><b><?= $invoice_da_items[$i]['rate']?></b> </p>
             </td>
             <td style="border-bottom:0" align="center" valign="top">
                <blockquote>
-                  <p><b><?= $value['amount'] ?></b></p>
+                  <p><b><?= $invoice_da_items[$i]['amount'] ?></b></p>
                </blockquote>
             </td>
          </tr>
          <?php } } ?>
+
          <?php for($i = 0; $i < $invoice_data['blank_counter']; $i++ ) { ?>
            <tr style="line-height: 60px;">
               <td style="border-top:0; border-bottom:0;"></td>

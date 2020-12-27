@@ -264,17 +264,27 @@
              $count = count($invoice_packing_list); 
              $total_net_wt = 0;
              $total_gross_wt = 0;
-             foreach($invoice_packing_list as $outerKey => $value) {
-                 
-              $total_net_wt+= $value['net_weight'];
-              $total_gross_wt+= $value['outer_gross_weight'];
+             //foreach($invoice_packing_list as $outerKey => $value) {
+              for($i = 0; $i < $count; $i++) {  
+                 $total_net_wt+= $invoice_packing_list[$i]['net_weight'];
+                 $total_gross_wt+= $invoice_packing_list[$i]['outer_gross_weight'];
         ?>
       <tr>
-         <td style="border-bottom:0; border-top: 0;" align="center" valign="top">
-                <p><?= !empty($value['drum_nos']) ? $value['drum_nos'] : '' ?></p>
+        <?php if($i == 0) { ?>
+         <td rowspan="<?=$count?>" style="border-bottom:0; border-top: 0;" align="center" valign="top">
+                <p>
+                  <b>
+                    <?php if(!empty($first_three_columns)) { 
+                          foreach ($first_three_columns['marks_drum_nos'] as $key => $value) {
+                             echo $value.'<br>';
+                          }
+                      }
+                    ?>
+                  </b>
+                </p>
                        
                 <?php //if($outerKey == ($count -1)) {
-                  if($outerKey == 0) { 
+                  //if($outerKey == 0) { 
                     if(!empty($combined_data)) { 
                      foreach($combined_data as $cKey =>  $loopValue){ 
                      $exp_mfg = explode('/', $cKey);
@@ -298,65 +308,67 @@
                   </p> 
                <?php }  }  }?>
 
-               <?php } ?>
+               <?php //} ?>
          </td>
-         <td style="border-bottom:0; border-top: 0;" align="center" valign="top">
-           <?php if($outerKey == 0) { ?>
-             <p><?= $value['packing_type'] ?>
+         <td rowspan="<?=$count?>" style="border-bottom:0; border-top: 0;" align="center" valign="top">
+           <?php //if($outerKey == 0) { ?>
+             <p><?= $invoice_packing_list[$i]['packing_type'] ?>
             </p>
 
-          <?php } ?>
+          <?php// } ?>
           
          </td>
-         <td style="border-bottom:0; border-top: 0;" align="center" valign="top">
+         <td rowspan="<?=$count?>" style="border-bottom:0; border-top: 0;" align="center" valign="top">
             <?php 
-               if($outerKey == 0) { ?>
+               //if($outerKey == 0) { ?>
                   <p>
-                    <b><?= $value['product'] ?></b>
+                    <b><?= $invoice_packing_list[$i]['product'] ?></b>
                   </p>
                 <?php   if(!empty($invoice_data['shipping_marks'])) { ?>
                   <p>
                       <?= $invoice_data['shipping_marks'] ?>
                   </p>
-                   <?php } } ?>
+                   <?php } 
+                   //} ?>
             <br />
   
          </td>
+       <?php } ?>
           <?php if($invoice_datype == '3' || $invoice_datype =='5' ) { ?>
              <td style="border-bottom:0" align="center" valign="top">
                 <blockquote>
-                    <p><?= $value['box_no'] ?></p>
+                    <p><?= $invoice_packing_list[$i]['box_no'] ?></p>
                 </blockquote>
              </td>
              <td style="border-bottom:0" align="center" valign="top">
                 <blockquote>
-                    <p><?= $value['total_no_boxes'] ?></p>
+                    <p><?= $invoice_packing_list[$i]['total_no_boxes'] ?></p>
                 </blockquote>
              </td>
              <td style="border-bottom:0" align="center" valign="top">
                 <blockquote>
-                    <p><?= $value['total_no_packs'] ?></p>
+                    <p><?= $invoice_packing_list[$i]['total_no_packs'] ?></p>
                 </blockquote>
              </td>
          <?php } else { ?>
              <td style="border-bottom:0" align="center" valign="top">
               <blockquote>
-                  <p><?= $value['excise_sr_no'] ?></p>
+                  <p><?= $invoice_packing_list[$i]['excise_sr_no'] ?></p>
               </blockquote>
            </td>
          <?php } ?>
          <td style="border-bottom:0" align="center" valign="top">
-            <p><?= $value['batch_no'] ?></p>
+            <p><?= $invoice_packing_list[$i]['batch_no'] ?></p>
          </td>
           <td style="border-bottom:0" align="center" valign="top">
-            <p><?= $value['net_weight'] ?></p>
+            <p><?= $invoice_packing_list[$i]['net_weight'] ?></p>
          </td>
          <td align="center" valign="top">
-               <p><?= $value['outer_gross_weight'] ?></p>
+               <p><?= $invoice_packing_list[$i]['outer_gross_weight'] ?></p>
          </td>
           <?php if($invoice_datype == '1' && !empty($show_seal_no)) { ?>
                <td align="center" valign="top">
-                     <p><?= $value['seal_no'] ?></p>
+                     <p><?= $invoice_packing_list[$i]['seal_no'] ?></p>
                </td>
           <?php } ?>
         

@@ -228,7 +228,7 @@
             <td width="7%" align="center" valign="top"><strong>Gross Wt.<br />of Pallet
             </td>
          </tr>
-<?php 
+          <?php 
             if(!empty($gsk_packing_map1)) { 
             $count = count($gsk_packing_map1);
            // foreach($gsk_packing_map1 as $outerKey => $value) {

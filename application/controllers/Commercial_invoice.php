@@ -1490,7 +1490,6 @@
                   }
               }
               $data['first_three_columns'] = $first_three_columns;
-             
 
               $da_type = $this->da_header->findOne(array('id' => $invoice_data['da_no']));
               $data['invoice_datype'] = $da_type['da_type'];
@@ -1610,6 +1609,16 @@
                       }
 
                   $invoice_packing_list  = $this->invoiceipackinglist->findAll(array('invoice_no' => $invoice_data['invoice_id']));
+
+                if(!empty($invoice_packing_list)) {
+                    $first_three_columns = array();
+                    foreach ($invoice_packing_list as $key => $value) {
+                         $first_three_columns['marks_drum_nos'][] = $value['drum_nos'];
+                         $first_three_columns['packing_type']  = $value['packing_type'];
+                         $first_three_columns['product']  = $value['product'];
+                    }
+                }
+              $data['first_three_columns'] = $first_three_columns;
 
                   if(!empty($invoice_packing_list[0]['import_file'])) {
         
@@ -2189,7 +2198,6 @@
                 $gsk_packing_map = $this->gsk_packing_map->findAll(array('da_no' => $export_gsk_header['da_no']));
 
                 if(!empty($gsk_packing_map)) {
-                    
                    $combined_array = array();
                    foreach($gsk_packing_map as $key => $value) {
                        $combined_array[trim($value['mfg_date'].'/'.$value['retest_date'])][] = $value['batch_no'];
@@ -2322,7 +2330,7 @@
             } else {
                    
                 $export_gsk_daitems = $this->export_gsk_daitems->findAll(array('da_no' => $export_gsk_header['da_no']));
-                $gsk_packing = $this->gsk_packing->findone(array('da_no' => $export_gsk_header['da_no']));
+                $gsk_packing = $this->gsk_packing->findOne(array('da_no' => $export_gsk_header['da_no']));
                 $gsk_packing_map = $this->gsk_packing_map->findAll(array('da_no' => $export_gsk_header['da_no']));
 
                 if(!empty($gsk_packing_map)) {
@@ -2347,7 +2355,6 @@
                             }
                         $counter++;
                     }  
-                  
                 }
 
                 $data['invoice_data'] = $export_gsk_header;
