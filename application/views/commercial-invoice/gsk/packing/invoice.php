@@ -380,55 +380,7 @@
                <strong><?= $gsk_packing['grand_gross_pallet'] ?></strong>
             </td>
          </tr>
-         <tr>
-            <td colspan="7"><strong>Amount Chargeable (in words) <?= $invoice_data['currency_name'] ?> ======></strong>&nbsp;&nbsp;&nbsp;&nbsp;<?= $invoice_data['total_amount_words'] ?></td>
-         </tr>
-         <tr>
-            <td style="border-right:0; border-bottom:0" colspan="3">
-               <table width="100%" border="0" cellpadding="0" cellspacing="0" class="noBorder">
-                  <tr>
-                     <td width="15%"><strong>PAN NO.</strong></td>
-                     <td width="2%">:</td>
-                     <td width="40%"><?= $invoice_data['pan_number'] ?></td>
-                  </tr>
-                  <tr>
-                     <td><strong>I.E. CODE NO.</strong></td>
-                     <td>:</td>
-                     <td><?= $invoice_data['ie_code_no'] ?></td>
-                  </tr>
-                  <tr>
-                  <?php if(!empty($invoice_data['ad_lic_file_no'])) { ?>
-                         <td><strong>Advance Lic File No.</strong></td>
-                         <td>:</td>
-                         <td><strong><?= $invoice_data['ad_lic_file_no'] ?></strong></td>
-                     <?php } ?>
-                  </tr>
-                  
-                  <tr>
-                     <td><strong>NET WEIGHT</strong></td>
-                     <td>:</td>
-                     <td><strong><?= $invoice_data['net_weight'] . ' KGS'?></strong></td>
-                  </tr>
-                  <tr>
-                     <td><strong>TARE WEIGHT</strong></td>
-                     <td>:</td>
-                     <td><strong><?= $invoice_data['tare_weight']. ' KGS' ?></strong></td>
-                  </tr>
-                  <tr>
-                     <td><strong>GROSS WEIGHT</strong></td>
-                     <td>:</td>
-                     <td><strong><?= $invoice_data['gross_weight']. ' KGS' ?></strong></td>
-                  </tr>
-               </table>
-            </td>
-            <td style="border-left:0; border-bottom:0" colspan="4">
-               <table class="border" width="100%" border="0" cellspacing="0" cellpadding="0">
-                  
-                  
-                 
-               </table>
-            </td>
-         </tr>
+      
          <tr>
             <td style="border-right:0; border-top:0" colspan="3">
                <table class="outer" width="100%" border="0" cellspacing="0" cellpadding="0">

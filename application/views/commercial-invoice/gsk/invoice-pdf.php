@@ -220,28 +220,23 @@
                <?= $invoice_data['currency_name'] ?></strong>
             </td>
          </tr>
-         <?php if(!empty($invoice_da_items)) { 
+                  <?php if(!empty($invoice_da_items)) { 
             $count = count($invoice_da_items);
             $total_quantity = 0;
             //foreach($invoice_da_items as $outerKey => $value) {
             for($i = 0; $i < $count; $i++) {
                $total_quantity+= $invoice_da_items[$i]['qty'];
+           
             ?>
          <tr>
-            <?php  if($i == 0) { ?>
-            <td rowspan="<?=$count?>" style="border-bottom:0" align="center" valign="top">
-               <p><b>  <?php
-                     // if($outerKey == '0') {
-                           if(!empty($invoice_da_items)) { 
-                              foreach($invoice_da_items as $daKey => $daValue) {
-                                    echo $daValue['marks_drum_no']. '<br>';
-                              }
-                           }
-                      //  }
-                     ?></b>
+            <td  style="border-bottom:0" align="center" valign="top">
+               <p>
+                  <b>  
+                      <?= $invoice_da_items[$i]['marks_drum_no'] ?>
+                  </b>
                </p>
             
-              <?php //if($outerKey == ($count -1)) { ?>
+              <?php if($i == ($count -1)) { ?>
                    <p>&nbsp;</p>
                <?php if(!empty($combined_data)) { 
                      foreach($combined_data as $cKey =>  $loopValue){ 
@@ -263,50 +258,34 @@
                      <b>Exp date:</b>                          
                          <?= $exp_mfg[0] ?>
                   </p> 
-               <?php }  }  } ?>
+               <?php }  }  } } ?>
 
                
             </td>
-            <td rowspan="<?=$count?>" style="border-bottom:0" align="center" valign="top">
+            <td  style="border-bottom:0" align="center" valign="top">
                <p>
                   <b>
-                     <?php 
-                        //if($outerKey == '0') {
-                           if(!empty($invoice_da_items)) { 
-                              foreach($invoice_da_items as $daKey => $daValue) {
-                                    echo $daValue['kind_of_package']. '<br>';
-                              }
-                           }
-                        //}
-                     ?> 
+                     <?= $invoice_da_items[$i]['kind_of_package'] ?>
                   </b> 
                </p> <br>
                
             </td>
-            <td rowspan="<?=$count?>" style="border-bottom:0" align="center" valign="top">
+            <td  style="border-bottom:0" align="center" valign="top">
                <p> 
                   <b>
-                     <?php
-                        //if($outerKey == '0') { 
-                           if(!empty($invoice_da_items)) { 
-                              foreach($invoice_da_items as $daKey => $daValue) {
-                                    echo $daValue['description_of_goods']. '<br>';
-                              }
-                           }
-                       // }
-                     ?> 
+                     <?= $invoice_da_items[$i]['description_of_goods'] ?> 
                   </b>
                <p> <br />
                <?php 
-                //if($outerKey == ($count -1)) {
-                  if(!empty($invoice_data['shipping_marks'])) { ?>
-                  <p>
-                      <?= $invoice_data['shipping_marks'] ?>
-                  </p>
+                  if($i == ($count -1)) {
+                     if(!empty($invoice_data['shipping_marks'])) { ?>
+                     <p>
+                        <?= $invoice_data['shipping_marks'] ?>
+                     </p>
                <?php } 
-                 //} ?>
+                   } 
+               ?>
             </td>
-            <?php } ?>
             <td style="border-bottom:0" align="center" valign="top">
                <p><b><?= $invoice_da_items[$i]['qty'] ?></b></p>
             </td>

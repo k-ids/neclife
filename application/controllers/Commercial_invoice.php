@@ -1894,10 +1894,10 @@
                    'invoice_date' => strip_tags($post['invoice_date']),
                    'export_reference' => $post['export_reference'],
                    'other_reference' => strip_tags($post['other_reference']),
-                   'buyer' => strip_tags($post['buyer_inv']),
-                   'consignee' => strip_tags($post['consignee_inv']),
-                   'notify' => strip_tags($post['notify_inv']),
-                   'notify_1' => strip_tags($post['notify_1_inv']),
+                   'buyer' => $post['buyer_inv'],
+                   'consignee' => $post['consignee_inv'],
+                   'notify' => $post['notify_inv'],
+                   'notify_1' => $post['notify_1_inv'],
                    'pre_carriage_by' => strip_tags($post['pre_carriage_by']),
                    'Place_of_reciept' => strip_tags($post['place_of_reciept']),
                    'vessel_flight_no' => strip_tags($post['vessal_flight']),
@@ -1909,7 +1909,7 @@
                    'term_of_delivery1' => '',
                    'payment_terms' => strip_tags($post['payment_terms']),
                    'payment_terms1' => '',
-                   'shipping_marks' => strip_tags($post['shipping_marks_inv']),
+                   'shipping_marks' => $post['shipping_marks_inv'],
                    'net_weight' => strip_tags($post['net_weight']),
                    'tare_weight' => strip_tags($post['tare_weight']),
                    'gross_weight' => strip_tags($post['gross_weight']),
@@ -2040,10 +2040,10 @@
                          'invoice_date' => strip_tags($post['invoice_date']),
                          'export_reference' => $post['export_reference'],
                          'other_reference' => strip_tags($post['other_reference']),
-                         'buyer' => strip_tags($post['buyer_inv']),
-                         'consignee' => strip_tags($post['consignee_inv']),
-                         'notify' => strip_tags($post['notify_inv']),
-                         'notify_1' => strip_tags($post['notify_1_inv']),
+                         'buyer' => $post['buyer_inv'],
+                         'consignee' => $post['consignee_inv'],
+                         'notify' => $post['notify_inv'],
+                         'notify_1' => $post['notify_1_inv'],
                          'pre_carriage_by' => strip_tags($post['pre_carriage_by']),
                          'Place_of_reciept' => strip_tags($post['place_of_reciept']),
                          'vessel_flight_no' => strip_tags($post['vessal_flight']),
@@ -2055,7 +2055,7 @@
                          'term_of_delivery1' => '',
                          'payment_terms' => strip_tags($post['payment_terms']),
                          'payment_terms1' => '',
-                         'shipping_marks' => strip_tags($post['shipping_marks_inv']),
+                         'shipping_marks' => $post['shipping_marks_inv'],
                          'net_weight' => strip_tags($post['net_weight']),
                          'tare_weight' => strip_tags($post['tare_weight']),
                          'gross_weight' => strip_tags($post['gross_weight']),
@@ -2184,6 +2184,7 @@
             if($this->session->userdata('error')) {
                 $this->session->unset_userdata('error');
             }
+
             $data = array();
             $export_gsk_header = $this->export_gsk_header->findOne(array('invoice_id' => $id));
             if(empty($id) && empty($export_gsk_header)) {
@@ -2203,7 +2204,8 @@
                        $combined_array[trim($value['mfg_date'].'/'.$value['retest_date'])][] = $value['batch_no'];
                    }
                 }
-
+                
+                //echo "<pre>"; print_r($export_gsk_daitems);die;
                 $data['invoice_data'] = $export_gsk_header;
                 $data['invoice_da_items'] = $export_gsk_daitems;
                 $data['gsk_packing'] = $gsk_packing;
@@ -2300,7 +2302,7 @@
                     }  
                 }
 
-                //echo "<pre>"; print_r($gsk_packing);die();
+                //echo "<pre>"; print_r($export_gsk_daitems);die();
                 $data['invoice_data'] = $export_gsk_header;
                 $data['invoice_da_items'] = $export_gsk_daitems;
                 $data['gsk_packing'] = $gsk_packing;
