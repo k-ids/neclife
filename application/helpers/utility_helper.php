@@ -137,7 +137,7 @@ function convert_number($number) {
         // Ones
         $result = "";
         if ($giga) {
-            $result .= $this->convert_number($giga) .  "Million";
+            $result .= convert_number($giga) .  "Million";
         }
         if ($kilo) {
             $result .= (empty($result) ? "" : " ") .convert_number($kilo) . " Thousand";

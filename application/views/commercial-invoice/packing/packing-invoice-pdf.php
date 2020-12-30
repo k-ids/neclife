@@ -208,10 +208,10 @@
          <td width="10%" align="center" valign="top"><strong>Marks &amp; Nos./<br />
             Drum no.</strong>
          </td>
-         <td width="15%"  align="center" valign="top"><strong>No. &amp; Kind of<br />
+         <td width="10%"  align="center" valign="top"><strong>No. &amp; Kind of<br />
             Packages</strong>
          </td>
-         <td align="center" valign="top"><strong>Description of Goods and/or Services </strong></td>
+         <td align="center" width="20%" valign="top"><strong>Description of Goods and/or Services </strong></td>
 
          <?php if($invoice_datype =='3' || $invoice_datype =='5' ) { ?>
             <td width="10%" align="center" valign="top"><strong>Box <br />
@@ -308,7 +308,7 @@
                ?>
             </p>
 
-          <?php// } ?>
+        
           
          </td>
          <td rowspan="<?=$count?>" style="border-bottom:0; border-top: 0;" align="center" valign="top">
@@ -479,7 +479,7 @@
                </tr>
             </table>
          </td>
-         <td colspan="<?php if($invoice_datype == '1' && !empty($show_seal_no)) { echo "5"; } else if($invoice_datype == '3' || $invoice_datype == '5') { echo "5"; } else { echo "4"; } ?>" align="right" valign="bottom" style="border-left:0; border-top:0">
+         <td colspan="<?php if($invoice_datype == '1' && !empty($show_seal_no)) { echo "5"; } else if($invoice_datype == '3' || $invoice_datype == '5') { echo "6"; } else { echo "4"; } ?>" align="right" valign="bottom" style="border-left:0; border-top:0">
             <table class="outer" width="100%" border="0" cellspacing="0" cellpadding="0">
                <tr>
                   <td width="51%">For <strong>NECTAR LIFESCIENCES LTD.</strong><br />

@@ -284,8 +284,8 @@
                   <b>
                     <?= $invoice_da_items[$i]['product'] ?>
                   </b>
-               <p> <br />
-                  <p> <br />
+                  </p>
+         
                   <?php if($i == ($count -1)) { 
                      if(!empty($invoice_data['shipping_marks'])) { ?>
                      <p>

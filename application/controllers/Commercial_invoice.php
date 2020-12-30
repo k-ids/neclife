@@ -1599,7 +1599,7 @@
                               //'shrink_tables_to_fit' => true
                             ]);
 
-                    $mpdf->SetDisplayMode('fullpage'); 
+                    //$mpdf->SetDisplayMode('fullwidth'); 
                     
                     $data = array();
                     $invoice_data =  $this->invoice_header_packing->findOne(array('invoice_id' => $id));
@@ -2331,7 +2331,8 @@
         public function pdf_gsk_packing_invoice($id = ''){
             
             $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
-            $mpdf->SetDisplayMode('fullwidth');
+            //$mpdf->SetDisplayMode('fullwidth');
+            $mpdf->shrink_tables_to_fit = 1;
             $data = array();
             $export_gsk_header = $this->export_gsk_header->findOne(array('invoice_id' => $id));
             if(empty($id) && empty($export_gsk_header)) {
