@@ -91,7 +91,7 @@
                   <td><?= $value["product_name"] ?></td>
                   <td><?= $value["productform"] ?></td>
                   <td><?= $value["productgrade"] ?></td>
-                  <td><?= $value["qty"] ?></td>
+                  <td><?= $value["total_qty_in_list"] ?></td>
                   <td><?= nice_date($value["packing_list_date"], 'd-M-Y' )?></td>
                   <td><?= $value["packing_list_time"] ?></td>
                   <td><a class="btn btn-primary" href="<?= base_url().$this->router->fetch_class().'/packing_list_plant_qa_approve_form/'.$value['da_no'].'/'.$value['product_form']?>"><i class="fa fa-refresh"></i>&nbsp;Select</td>

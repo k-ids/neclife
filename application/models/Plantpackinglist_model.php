@@ -79,6 +79,7 @@ class Plantpackinglist_model extends MY_Model {
         $this->_userRoles();  // get data when user role is PPIC: location: Core -> My_Model.php
 
         $this->db->group_by($this->_table.'.da_no'); 
+        $this->db->group_by($this->_table.'.product'); 
         $this->db->order_by('id', 'DESC');
 
         $query = $this->db->get();
@@ -114,7 +115,8 @@ class Plantpackinglist_model extends MY_Model {
         $condition = array($this->_table.'.approved_by!=' => NULL);
         $this->db->where( $condition );
 
-        $this->db->group_by($this->_table.'.da_no'); 
+        $this->db->group_by($this->_table.'.da_no');
+        $this->db->group_by($this->_table.'.product'); 
         $this->db->order_by('id', 'DESC');
 
         $query = $this->db->get();

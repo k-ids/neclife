@@ -86,7 +86,7 @@
                   <td><?= $value["product_name"] ?></td>
                   <td><?= $value["productform"] ?></td>
                   <td><?= $value["productgrade"] ?></td>
-                  <td><?= $value["qty"] ?></td>
+                  <td><?= $value["total_qty_in_list"] ?></td>
                   <td><?= nice_date($value["packing_list_date"], 'd-M-Y' )?></td>
                   <td><?= $value["packing_list_time"] ?></td>
                   

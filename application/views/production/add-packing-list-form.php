@@ -130,7 +130,7 @@
 
       <div class="row">
           <div class="form-group col-md-12">
-            <input type="checkbox" name="show_seal_no" value="1">
+            <input type="checkbox" name="show_seal_no" value="1" <?php if($seal_no_set == '1') { echo 'checked'; } ?> >
              <b class="text-danger">Please mark box checked if you want to show the seal number in API invoce.</b>
           </div>
       </div>

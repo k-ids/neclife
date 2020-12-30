@@ -78,7 +78,7 @@
             if(empty($packing_list)) {
                $this->session->set_flashdata('error','No Record Found.');
             }
-            //echo "<pre>"; print_r($this->db->last_query());die;
+            //echo "<pre>"; print_r($packing_list);die;
             $data['buyers'] = $this->party->findAll(null, array('orderby' => 'party','order' => 'ASC'));
             $data['packing_list'] = $packing_list;
             $data['pageTitle'] = 'Neclife- QA | Plant Packing Lsit Check/Uncheck';

@@ -75,8 +75,8 @@
         CKEDITOR.replace( 'pallet_dimensions' );
         CKEDITOR.replace( 'consignee_inv' );
         CKEDITOR.replace( 'buyer_inv' );
-        CKEDITOR.replace( 'notify_inv' );
-        CKEDITOR.replace( 'notify_1_inv' );
+       // CKEDITOR.replace( 'notify_inv' );
+        //CKEDITOR.replace( 'notify_1_inv' );
 
       $(document).ready(function(){
            exchangeRate();

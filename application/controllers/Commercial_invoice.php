@@ -768,7 +768,7 @@
 
                $implode_lic = !empty($lic_name) ? implode(', ',  $lic_name) : '';
                $invoice_creator_info = $this->admin_model->findOne(array('id' => $invoice_data[0]['created_by']));
-
+      
                $data['advance_lic_no'] =  $implode_lic;
                $data['invoice_data'] = $invoice_data[0];
                $data['invoice_da_items'] = $invoice_da_items;
@@ -1185,8 +1185,8 @@
         $da_out_standing = $this->outstanding->findAll(array('da_no' => $id));
 
         $packing_list  = $this->packinglist->findAllPackingListByDa($id);
+        //echo "<pre>"; print_r($packing_list);die;
 
-        //echo "<pre>"; print_r($this->db->last_query());die;
         $net_weight = 0;
         $gross_weight = 0;
         $tare_weight = 0;
@@ -1480,15 +1480,22 @@
               $data['show_seal_no'] =  !empty($showSealNo['show_seal_no']) ? $showSealNo['show_seal_no'] : '0';
 
               $invoice_packing_list  = $this->invoiceipackinglist->findAll(array('invoice_no' => $invoice_data['invoice_id']));
-
+              //echo "<pre>"; print_r($invoice_packing_list);die;
               if(!empty($invoice_packing_list)) {
                   $first_three_columns = array();
+                  $first_three_columns['product'] = array();
+                  $first_three_columns['packing_type'] = array();
                   foreach ($invoice_packing_list as $key => $value) {
                        $first_three_columns['marks_drum_nos'][] = $value['drum_nos'];
-                       $first_three_columns['packing_type']  = $value['packing_type'];
-                       $first_three_columns['product']  = $value['product'];
+                       if (!in_array($value['packing_type'], $first_three_columns['packing_type'])) {
+                           $first_three_columns['packing_type'][]  = $value['packing_type'];
+                        }
+                       if (!in_array($value['product'], $first_three_columns['product'])) {
+                           $first_three_columns['product'][]  = $value['product'];
+                        }
                   }
               }
+              //echo "<pre>"; print_r($first_three_columns);die;
               $data['first_three_columns'] = $first_three_columns;
 
               $da_type = $this->da_header->findOne(array('id' => $invoice_data['da_no']));
@@ -1609,16 +1616,21 @@
                       }
 
                   $invoice_packing_list  = $this->invoiceipackinglist->findAll(array('invoice_no' => $invoice_data['invoice_id']));
-
-                if(!empty($invoice_packing_list)) {
-                    $first_three_columns = array();
-                    foreach ($invoice_packing_list as $key => $value) {
-                         $first_three_columns['marks_drum_nos'][] = $value['drum_nos'];
-                         $first_three_columns['packing_type']  = $value['packing_type'];
-                         $first_three_columns['product']  = $value['product'];
-                    }
-                }
-              $data['first_three_columns'] = $first_three_columns;
+                  if(!empty($invoice_packing_list)) {
+                     $first_three_columns = array();
+                     $first_three_columns['product'] = array();
+                     $first_three_columns['packing_type'] = array();
+                     foreach ($invoice_packing_list as $key => $value) {
+                       $first_three_columns['marks_drum_nos'][] = $value['drum_nos'];
+                         if (!in_array($value['packing_type'], $first_three_columns['packing_type'])) {
+                           $first_three_columns['packing_type'][]  = $value['packing_type'];
+                          }
+                          if (!in_array($value['product'], $first_three_columns['product'])) {
+                           $first_three_columns['product'][]  = $value['product'];
+                         }
+                      }
+                  }
+                  $data['first_three_columns'] = $first_three_columns;
 
                   if(!empty($invoice_packing_list[0]['import_file'])) {
         
@@ -1931,11 +1943,10 @@
                    'currency_name' => strip_tags($post['currency_name']),
                    'created_by' => $this->session->userdata('admin_id'),
                    'created_at' => date('Y-m-d'),
-
                );
 
-                $insert = $this->export_gsk_header->insert($table_array);
-
+                 $insert = $this->export_gsk_header->insert($table_array);
+                
                  if(!empty($insert)) {
 
                     if(!empty($post['packing_type'])) {
@@ -1950,16 +1961,14 @@
                                         'invoice_no' => $salt.md5($id),
                                         'marks_drum_no' => $post['drum_nos'][$i],
                                         'kind_of_package' => $post['packing_type'][$i],
-                                  'description_of_goods' => $post['description_of_goods'][$i],
+                                        'description_of_goods' => $post['description_of_goods'][$i],
                                         'qty' => $post['quantity'][$i],
                                         'rate' => $post['rate'][$i],
                                         'amount' => $post['amount'][$i],
-
                                       );
-
                                   }
                             }
-
+                            //echo "<pre>"; print_r($da_items_table_array);die;
                             if(!empty($da_items_table_array)) {
                                  $this->export_gsk_daitems->insertBatch($da_items_table_array); 
                              }
@@ -2085,7 +2094,7 @@
                          'margin_right' => strip_tags($post['margin_right']),
 
                      );
-                     //echo "<pre>"; print_r($table_array);die;
+                     //echo "<pre>"; print_r($_POST);die;
                      $update = $this->export_gsk_header->update($table_array, array('invoice_id' => $id));
 
                      if(!empty($update)) {
@@ -2102,8 +2111,8 @@
                                         'invoice_no' => $id,
                                         'marks_drum_no' => $post['drum_nos'][$i],
                                         'kind_of_package' => $post['packing_type'][$i],
-                                  'description_of_goods' => $post['description_of_goods'][$i],
-                                        'qty' => $post['quantity'][$i],
+                                        'description_of_goods' => $post['description_of_goods'][$i],
+                                        'qty' => $post['qty'][$i],
                                         'rate' => $post['rate'][$i],
                                         'amount' => $post['amount'][$i],
 
@@ -2113,7 +2122,7 @@
                             }
 
                             if(!empty($da_items_table_array)) {
-
+                            
                                  $this->export_gsk_daitems->deleteWhere(array('invoice_no' => $id));
                                  $this->export_gsk_daitems->insertBatch($da_items_table_array); 
                              }
@@ -2224,6 +2233,7 @@
             
             $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
             $mpdf->SetDisplayMode('fullwidth');
+            
             $data = array();
             $export_gsk_header = $this->export_gsk_header->findOne(array('invoice_id' => $id));
             if(empty($id) && empty($export_gsk_header)) {

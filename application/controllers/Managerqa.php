@@ -80,6 +80,7 @@
             if(empty($packing_list)) {
                $this->session->set_flashdata('error','No Record Found.');
             }
+            //echo "<pre>"; print_r($packing_list);die;
             //$da_header = $this->da_header->findHeaderItems($id);
             $data['buyers'] = $this->party->findAll(null, array('orderby' => 'party','order' => 'ASC'));
             //$packing_type = $this->packing_type->findAll(array('datype' => $da_header['da_type']));

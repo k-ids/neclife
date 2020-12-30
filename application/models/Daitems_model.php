@@ -46,7 +46,7 @@ class Daitems_model extends MY_Model {
         $this->db->join('plantpackinglist', $this->_table.'.product_form = plantpackinglist.product_form', 'left');
 
         if(!empty($id)) {
-            $this->db->where('plantpackinglist.da_no', $id);
+            $this->db->where($this->_table.'.da_no', $id);
         }
         $this->db->where($this->_table.'.financial_year', $this->session->userdata('financial_year'));
 

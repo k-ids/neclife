@@ -244,7 +244,7 @@
          <?php } ?>
 
       </tr>
-         <?php if(!empty($invoice_packing_list) && empty($import)) {
+           <?php if(!empty($invoice_packing_list) && empty($import)) {
              $count = count($invoice_packing_list); 
              $total_net_wt = 0;
              $total_gross_wt = 0;
@@ -261,14 +261,16 @@
                     <?php if(!empty($first_three_columns)) { 
                           foreach ($first_three_columns['marks_drum_nos'] as $key => $value) {
                              echo $value.'<br>';
+                             echo ' '.'<br>';
                           }
                       }
                     ?>
                   </b>
                 </p>
                        
-                <?php
-                  if(!empty($combined_data)) { 
+                <?php //if($outerKey == ($count -1)) {
+                  //if($outerKey == 0) { 
+                    if(!empty($combined_data)) { 
                      foreach($combined_data as $cKey =>  $loopValue){ 
                      $exp_mfg = explode('/', $cKey);
                 ?>
@@ -291,21 +293,38 @@
                   </p> 
                <?php }  }  }?>
 
-               
+               <?php //} ?>
          </td>
          <td rowspan="<?=$count?>" style="border-bottom:0; border-top: 0;" align="center" valign="top">
-          
-             <p><?= $invoice_packing_list[$i]['packing_type'] ?>
+           <?php //if($outerKey == 0) { ?>
+             <p>
+              <?php 
+                  if(!empty($first_three_columns)) { 
+                    foreach ($first_three_columns['packing_type'] as $key => $value) {
+                             echo $value.'<br>';
+                             echo ' '.'<br>';
+                    }
+                  }
+               ?>
             </p>
 
-        
+          <?php// } ?>
           
          </td>
          <td rowspan="<?=$count?>" style="border-bottom:0; border-top: 0;" align="center" valign="top">
             <?php 
                //if($outerKey == 0) { ?>
                   <p>
-                    <b><?= $invoice_packing_list[$i]['product'] ?></b>
+                    <b> <?php 
+                      if(!empty($first_three_columns)) { 
+                        foreach ($first_three_columns['product'] as $key => $value) {
+                                 echo $value.'<br>';
+                                 echo ' '.'<br>';
+                        }
+                      }
+                       ?>
+                   
+                 </b>
                   </p>
                 <?php   if(!empty($invoice_data['shipping_marks'])) { ?>
                   <p>
@@ -346,17 +365,17 @@
           <td style="border-bottom:0" align="center" valign="top">
             <p><?= $invoice_packing_list[$i]['net_weight'] ?></p>
          </td>
-         <td style="border-bottom:0" align="center" valign="top">
+         <td align="center" valign="top">
                <p><?= $invoice_packing_list[$i]['outer_gross_weight'] ?></p>
          </td>
           <?php if($invoice_datype == '1' && !empty($show_seal_no)) { ?>
-          <td style="border-bottom:0" align="center" valign="top">
-              <p><?= $invoice_packing_list[$i]['seal_no'] ?></p>
-          </td>
+               <td align="center" valign="top">
+                     <p><?= $invoice_packing_list[$i]['seal_no'] ?></p>
+               </td>
           <?php } ?>
         
         </tr>
-        <?php }?>
+        <?php } ?>
         
 
          <?php for($i = 0; $i < $invoice_data['custom_blank_counter']; $i++ ) { ?>

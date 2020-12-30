@@ -270,11 +270,12 @@
       <tr>
         <?php if($i == 0) { ?>
          <td rowspan="<?=$count?>" style="border-bottom:0; border-top: 0;" align="center" valign="top">
-              <p>
+                <p>
                   <b>
                     <?php if(!empty($first_three_columns)) { 
                           foreach ($first_three_columns['marks_drum_nos'] as $key => $value) {
                              echo $value.'<br>';
+                             echo ' '.'<br>';
                           }
                       }
                     ?>
@@ -306,21 +307,38 @@
                   </p> 
                <?php }  }  }?>
 
-              
+               <?php //} ?>
          </td>
          <td rowspan="<?=$count?>" style="border-bottom:0; border-top: 0;" align="center" valign="top">
-          
-             <p><?= $invoice_packing_list[$i]['packing_type'] ?>
+           <?php //if($outerKey == 0) { ?>
+             <p>
+              <?php 
+                  if(!empty($first_three_columns)) { 
+                    foreach ($first_three_columns['packing_type'] as $key => $value) {
+                             echo $value.'<br>';
+                             echo ' '.'<br>';
+                    }
+                  }
+               ?>
             </p>
 
-          
+          <?php// } ?>
           
          </td>
          <td rowspan="<?=$count?>" style="border-bottom:0; border-top: 0;" align="center" valign="top">
             <?php 
                //if($outerKey == 0) { ?>
                   <p>
-                    <b><?= $invoice_packing_list[$i]['product'] ?></b>
+                    <b> <?php 
+                      if(!empty($first_three_columns)) { 
+                        foreach ($first_three_columns['product'] as $key => $value) {
+                                 echo $value.'<br>';
+                                 echo ' '.'<br>';
+                        }
+                      }
+                       ?>
+                   
+                 </b>
                   </p>
                 <?php   if(!empty($invoice_data['shipping_marks'])) { ?>
                   <p>

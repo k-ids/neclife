@@ -199,6 +199,7 @@
                <?= $invoice_data['final_destination'] ?>
             </td>
          </tr>
+       
          <tr>
             <td width="20%" align="center" valign="top"><strong>Marks &amp; Nos./<br />
                Container no.</strong>
@@ -234,6 +235,7 @@
                            if(!empty($invoice_da_items)) { 
                               foreach($invoice_da_items as $daKey => $daValue) {
                                     echo $daValue['marks_drum_no']. '<br>';
+                                    echo ' '.'<br>';
                               }
                            }
                       //  }
@@ -275,6 +277,7 @@
                            if(!empty($invoice_da_items)) { 
                               foreach($invoice_da_items as $daKey => $daValue) {
                                     echo $daValue['kind_of_package']. '<br>';
+                                    echo ' '.'<br>';
                               }
                            }
                         //}
@@ -290,6 +293,7 @@
                            if(!empty($invoice_da_items)) { 
                               foreach($invoice_da_items as $daKey => $daValue) {
                                     echo $daValue['description_of_goods']. '<br>';
+                                    echo ' '.'<br>';
                               }
                            }
                        // }

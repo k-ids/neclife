@@ -222,7 +222,7 @@
                <?= $invoice_data['currency_name'] ?></strong>
             </td>
          </tr>
-         <?php if(!empty($invoice_da_items)) { 
+          <?php if(!empty($invoice_da_items)) { 
             $count = count($invoice_da_items);
             $total_quantity = 0;
             //foreach($invoice_da_items as $outerKey => $value) {
@@ -230,21 +230,15 @@
                $total_quantity+= $invoice_da_items[$i]['qty'];
             ?>
          <tr>
-            <?php  if($i == 0) { ?>
+            
                <td style="border-bottom:0" align="center" valign="top">
                   <p>
                      <b>  
-                        <?php
-                              if(!empty($invoice_da_items)) { 
-                                 foreach($invoice_da_items as $daKey => $daValue) {
-                                       echo $daValue['drum_nos']. '<br>';
-                                 }
-                              }
-                        ?>
+                          <?= $invoice_da_items[$i]['drum_nos'] ?>
                      </b>
                   </p>
 
-                  <?php //if($outerKey == ($count -1)) { ?>
+                  <?php if($i == ($count -1)) { ?>
                       <p>&nbsp;</p>
                   <?php if(!empty($combined_data)) { 
                         foreach($combined_data as $cKey =>  $loopValue){ 
@@ -268,20 +262,12 @@
                      </p> 
                   <?php }  }  } ?>
 
-                  <?php// } ?>
+                  <?php  } ?>
                </td>
                <td style="border-bottom:0" align="center" valign="top">
                <p>
                   <b>
-                     <?php 
-                        //if($outerKey == '0') {
-                           if(!empty($invoice_da_items)) { 
-                              foreach($invoice_da_items as $daKey => $daValue) {
-                                    echo $daValue['packing_type']. '<br>';
-                              }
-                           }
-                        //}
-                     ?> 
+                     <?= $invoice_da_items[$i]['packing_type'] ?>
                   </b> 
                </p> <br>
                   
@@ -289,26 +275,18 @@
                <td style="border-bottom:0" align="center" valign="top">
                 <p> 
                   <b>
-                     <?php
-                        //if($outerKey == '0') { 
-                           if(!empty($invoice_da_items)) { 
-                              foreach($invoice_da_items as $daKey => $daValue) {
-                                    echo $daValue['product']. '<br>';
-                              }
-                           }
-                       // }
-                     ?> 
+                    <?= $invoice_da_items[$i]['product'] ?>
                   </b>
                <p> <br />
                   <p> <br />
-                  <?php //if($outerKey == ($count -1)) {
+                  <?php if($i == ($count -1)) { 
                      if(!empty($invoice_data['shipping_marks'])) { ?>
                      <p>
                          <?= $invoice_data['shipping_marks'] ?>
                      </p>
-                  <?php } //} ?>
+                  <?php } } ?>
                </td>
-            <?php } ?>
+          
 
             <td style="border-bottom:0" align="center" valign="top">
                <p><b><?= $invoice_da_items[$i]['qty'] ?></b></p>
@@ -316,7 +294,7 @@
             <td style="border-bottom:0" align="center" valign="top">
                <p><b><?= $invoice_da_items[$i]['rate']?></b></p>
             </td>
-            <td style="border-bottom:0" align="center" valign="top">
+            <td align="center" valign="top">
                <blockquote>
                   <p><b><?= $invoice_da_items[$i]['amount'] ?></b></p>
                </blockquote>

@@ -338,11 +338,11 @@
             $da_items = $this->da_items->findDAItemsById($itemId);
             
             $packing_list = $this->packing_list->findAll(array('product' => $da_items[0]['product'], 'da_no' => $da_items[0]['da_no'] ), array('orderby' => 'id','order' => 'ASC')); 
-
+            
             $packing_type = $this->packing_type->findAll(array('datype' => $da_header['da_type']));
             $data['da_header'] = $da_header;
             $data['da_items'] = $da_items[0];
-
+            $data['seal_no_set'] = $packing_list[0]['show_seal_no'];
             $data['packing_list'] = $packing_list;
             $data['packing_type'] = $packing_type;
             $data['production_remarks'] = $packing_list[0]['production_remarks'];
