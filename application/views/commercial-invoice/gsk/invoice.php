@@ -20,7 +20,7 @@
       <style type="text/css">
          table{
          font-family:Arial, Helvetica, sans-serif;
-         font-size: 14px;
+         font-size: <?=$invoice_data['font_size'] .'px' ?>;
          }
          span{
          padding-left:20px;
@@ -232,7 +232,7 @@
             $total_quantity = 0;
             //foreach($invoice_da_items as $outerKey => $value) {
             for($i = 0; $i < $count; $i++) {
-               $total_quantity+= $invoice_da_items[$i]['qty'];
+               $total_quantity+= number_format((float)$invoice_da_items[$i]['qty'], 2, '.', ''); 
            
             ?>
          <tr>
@@ -282,7 +282,7 @@
                   <b>
                      <?= $invoice_da_items[$i]['description_of_goods'] ?> 
                   </b>
-               <p> <br />
+               </p> <br />
                <?php 
                   if($i == ($count -1)) {
                      if(!empty($invoice_data['shipping_marks'])) { ?>

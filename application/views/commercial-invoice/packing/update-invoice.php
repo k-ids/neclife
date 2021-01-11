@@ -324,14 +324,19 @@
      <div class="card-block">
 
       <div class="row">
-           <div class="form-group col-md-6">
-             <label>Manage Custom Invoice Height:
+           <div class="form-group col-md-4">
+             <label>Manage Custom Invoice Height:</label>
              <input type="number" name="custom_blank_counter" min="0" step="1" value="<?= $invoice_data['custom_blank_counter'] ?>" class="form-control">
            </div>
-           <div class="form-group col-md-6">
+           <div class="form-group col-md-4">
              <label>Manage Customer Invoice Height: 
              </label>
              <input type="number" name="customer_blank_counter" min="0" step="1" value="<?= $invoice_data['customer_blank_counter'] ?>" class="form-control">
+           </div>
+           <div class="form-group col-md-4">
+             <label>Invoice Font Size: 
+             </label>
+             <input type="number" name="font_size" min="9" step="1" value="<?= !empty($invoice_data['font_size']) ? $invoice_data['font_size'] : '9' ?>" class="form-control" >
            </div>
         </div>
 

@@ -22,7 +22,7 @@
        <style type="text/css">
         table{
     font-family:Arial, Helvetica, sans-serif;
-    font-size: 14px;
+    font-size: <?=$invoice_data['font_size'] .'px' ?>;
     }
     span{
     padding-left:20px;

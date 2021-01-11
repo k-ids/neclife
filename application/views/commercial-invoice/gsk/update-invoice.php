@@ -235,7 +235,7 @@
                    $prev_total_quantity = 0;
                    foreach($da_items as $key => $daitems) {
                    $sum+= $daitems['amount'];
-                   $prev_total_quantity += $daitems['qty'];
+                   $prev_total_quantity +=  number_format((float)$daitems['qty'], 2, '.', '');
               ?>
                 <tr>
                     <td>
@@ -527,21 +527,26 @@
      <div class="card-block">
 
         <div class="row">
-           <div class="form-group col-md-6">
-             <label>Manage GSK Invoice Height:
+           <div class="form-group col-md-4">
+             <label>Manage GSK Invoice Height:</label>
               <a data-toggle="tooltip" title="<img src='<?= base_url().'resources/gsk-invoice.png'?>' />">
                   <i class="fa fa-question-circle text-danger"></i>
               </a> 
              </label>
              <input type="number" name="blank_counter" min="0" step="1" value="<?= $invoice_data['blank_counter'] ?>" class="form-control">
            </div>
-           <div class="form-group col-md-6">
+           <div class="form-group col-md-4">
              <label>Manage GSK Packing List Height:
               <a data-toggle="tooltip" title="<img src='<?= base_url().'resources/gsk-packing.png'?>' />">
                   <i class="fa fa-question-circle text-danger"></i>
               </a> 
              </label>
              <input type="number" name="gsk_packing_blank_counter" min="0" step="1" value="<?= $invoice_data['gsk_packing_blank_counter'] ?>" class="form-control">
+           </div>
+            <div class="form-group col-md-4">
+             <label>Invoice Font Size: 
+             </label>
+             <input type="number" name="font_size" min="9" step="1" value="<?= !empty($invoice_data['font_size']) ? $invoice_data['font_size'] : '9' ?>" class="form-control" >
            </div>
         </div>
 

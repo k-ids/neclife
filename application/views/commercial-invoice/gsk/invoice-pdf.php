@@ -10,7 +10,7 @@
          } 
          table{
          font-family:Arial, Helvetica, sans-serif;
-         font-size: 9px;
+         font-size: <?=$invoice_data['font_size'] .'px' ?>;
          }
          span{
          padding-left:20px;
@@ -275,7 +275,7 @@
                   <b>
                      <?= $invoice_da_items[$i]['description_of_goods'] ?> 
                   </b>
-               <p> <br />
+               </p> <br />
                <?php 
                   if($i == ($count -1)) {
                      if(!empty($invoice_data['shipping_marks'])) { ?>

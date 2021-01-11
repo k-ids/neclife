@@ -10,7 +10,7 @@
 		   margin-bottom:5px!important;
 	   } 
          table{    font-family:Arial, Helvetica, sans-serif;
-         font-size: 9px;
+         font-size: <?=$invoice_data['font_size'] .'px' ?>;
          overflow: wrap;
          }
          span{

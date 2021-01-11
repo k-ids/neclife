@@ -556,6 +556,7 @@
                'margin_bottom' => strip_tags($post['margin_bottom']),
                'margin_left' => strip_tags($post['margin_left']),
                'margin_right' => strip_tags($post['margin_right']),
+               'font_size' => strip_tags($post['font_size'])
 
            );
 
@@ -1355,6 +1356,7 @@
                'margin_bottom' => strip_tags($post['margin_bottom']),
                'margin_left' => strip_tags($post['margin_left']),
                'margin_right' => strip_tags($post['margin_right']),
+               'font_size' => strip_tags($post['font_size'])
            );
 
                    //echo "<pre>";print_r($table_array);'<br>';
@@ -2092,6 +2094,7 @@
                          'margin_bottom' => strip_tags($post['margin_bottom']),
                          'margin_left' => strip_tags($post['margin_left']),
                          'margin_right' => strip_tags($post['margin_right']),
+                         'font_size' => strip_tags($post['font_size'])
 
                      );
                      //echo "<pre>"; print_r($_POST);die;
