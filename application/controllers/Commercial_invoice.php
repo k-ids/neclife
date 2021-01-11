@@ -1751,8 +1751,10 @@
         */
 
         public function total_in_words() {
-
-            if (!$this->input->is_ajax_request()) {
+            $num = $this->input->post('amount');
+            $response = array('amount_in_words' => convert_number($num));
+            echo json_encode( $response); die;
+         /*   if (!$this->input->is_ajax_request()) {
              exit('No direct script access allowed');
             } else {
               $num = $this->input->post('amount');
@@ -1832,7 +1834,7 @@
                 $response = array('amount_in_words' => $rettxt);
                 echo json_encode($response);die;
               
-          }
+          }*/
       }  
       
         /*

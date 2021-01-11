@@ -251,7 +251,7 @@
                        <input type="text" class="form-control" name="description_of_goods[]" value="<?= $daitems['description_of_goods'] ?>" >
                     </td>
                     <td>
-                       <input type="text" class="form-control" name="qty[]" value="<?= $daitems['qty'] ?>" id="re-qty-<?= $key ?>" onchange="reCalculation(<?= $key ?>)">
+                       <input type="text" class="form-control" name="qty[]" value="<?= $daitems['qty'] ?>" id="re-quantity-<?= $key ?>" onchange="reCalculation(<?= $key ?>)">
                     </td>
                     <td>
                        <input type="text" class="form-control" name="rate[]" value="<?= $daitems['rate'] ?>" id="re-rate-<?= $key ?>" onchange="reCalculation(<?= $key ?>)">
@@ -274,7 +274,7 @@
         </div>
         <div class="form-group col-md-8">
            <label>Amount Chargeable (in words) <?= $invoice_data['currency_name'] ?>:</label>
-           <input type="text" name="total_words" class="form-control" value="<?= set_value('total_words' ,$invoice_data['total_amount_words'] ) ?>" id="re-amount-words" readonly>
+           <input type="text" name="total_words" class="form-control" value="<?= set_value('total_words' , $invoice_data['total_amount_words'] ) ?>" id="re-amount-words" readonly>
         </div>
       </div>
     </div>

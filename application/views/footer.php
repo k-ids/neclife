@@ -706,10 +706,12 @@
     }
 
     function reCalculation(index) {
-  
+        
         var rate = $('#re-rate-'+index).val();
         var quantity = $('#re-quantity-'+index).val();
+
         var amount  = ((quantity) * (rate)).toFixed(2);
+        
         $('#re-amount-'+index).val(amount);
         var rowCount = $('.re-calculate tbody tr').length;
         var i;
@@ -735,6 +737,7 @@
 
          var url = '<?= base_url().'commercial_invoice/total_in_words'?>';
          var data = { amount : reTotalAmount};
+
          $.ajax({
               type: 'POST',
               url: url,

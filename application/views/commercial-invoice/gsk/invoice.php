@@ -228,11 +228,14 @@
             </td>
          </tr>
          <?php if(!empty($invoice_da_items)) { 
+            //echo "<pre>"; print_r($invoice_da_items);die;
             $count = count($invoice_da_items);
             $total_quantity = 0;
+            $total_amount  = 0;
             //foreach($invoice_da_items as $outerKey => $value) {
             for($i = 0; $i < $count; $i++) {
                $total_quantity+= number_format((float)$invoice_da_items[$i]['qty'], 2, '.', ''); 
+               $total_amount+= number_format((float)$invoice_da_items[$i]['amount'], 2, '.', ''); 
            
             ?>
          <tr>
@@ -314,7 +317,7 @@
                <strong><?= number_format((float)$total_quantity, 2, '.', '') ?></strong>
             </td>
             <td></td>
-            <td><strong><?= $invoice_data['total'] ?></td>
+            <td><strong><?= $total_amount ?></td>
          </tr>
          <tr>
             <td colspan="6"><strong>Amount Chargeable (in words) <?= $invoice_data['currency_name'] ?> ======></strong>&nbsp;&nbsp;&nbsp;&nbsp;<?= $invoice_data['total_amount_words'] ?></td>
